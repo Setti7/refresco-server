@@ -1,0 +1,2942 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+"An object with an ID"
+interface Node {
+    "The id of the object."
+    id: ID!
+}
+
+"The ParseObject interface type is used as a base type for the auto generated object types."
+interface ParseObject {
+    ACL: ACL!
+    "This is the date in which the object was created."
+    createdAt: Date!
+    "This is the object id."
+    objectId: ID!
+    "This is the date in which the object was las updated."
+    updatedAt: Date!
+}
+
+"The SchemaField interface type is used as a base type for the different supported fields of an object class schema."
+interface SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+"Use Inline Fragment on Array to get results: https://graphql.org/learn/queries/#inline-fragments"
+union ArrayResult = Address | Element | Gallon | Order | OrderItem | PaymentMethod | Role | Session | Store | User
+
+"Current access control list of the current object."
+type ACL {
+    "Public access control list."
+    public: PublicACL
+    "Access control list for roles."
+    roles: [RoleACL!]
+    "Access control list for users."
+    users: [UserACL!]
+}
+
+"The Address object type is used in operations that involve outputting objects of Address class."
+type Address implements Node & ParseObject {
+    ACL: ACL!
+    "This is the object city."
+    city: String
+    "This is the object complement."
+    complement: String
+    "This is the object coordinate."
+    coordinate: GeoPoint
+    "This is the object country."
+    country: String
+    "This is the date in which the object was created."
+    createdAt: Date!
+    "This is the object district."
+    district: String
+    "The ID of an object"
+    id: ID!
+    "This is the object number."
+    number: Float
+    "This is the object id."
+    objectId: ID!
+    "This is the object pointOfReference."
+    pointOfReference: String
+    "This is the object postalCode."
+    postalCode: String
+    "This is the object state."
+    state: String
+    "This is the object streetName."
+    streetName: String
+    "This is the date in which the object was las updated."
+    updatedAt: Date!
+}
+
+"A connection to a list of items."
+type AddressConnection {
+    "This is the total matched objecs count that is returned when the count flag is set."
+    count: Int!
+    "A list of edges."
+    edges: [AddressEdge]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type AddressEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: Address
+}
+
+type CallCloudCodePayload {
+    clientMutationId: String
+    "This is the result value of the cloud code function execution."
+    result: Any
+}
+
+"The Class type is used to return the information about an object class."
+type Class {
+    "This is the name of the object class."
+    name: String!
+    "These are the schema's fields of the object class."
+    schemaFields: [SchemaField!]!
+}
+
+type CreateAddressPayload {
+    "This is the created object."
+    address: Address!
+    clientMutationId: String
+}
+
+type CreateClassPayload {
+    "This is the created class."
+    class: Class!
+    clientMutationId: String
+}
+
+type CreateFilePayload {
+    clientMutationId: String
+    "This is the created file info."
+    fileInfo: FileInfo!
+}
+
+type CreateGallonPayload {
+    clientMutationId: String
+    "This is the created object."
+    gallon: Gallon!
+}
+
+type CreateOrderItemPayload {
+    clientMutationId: String
+    "This is the created object."
+    orderItem: OrderItem!
+}
+
+type CreateOrderPayload {
+    clientMutationId: String
+    "This is the created object."
+    order: Order!
+}
+
+type CreatePaymentMethodPayload {
+    clientMutationId: String
+    "This is the created object."
+    paymentMethod: PaymentMethod!
+}
+
+type CreateRolePayload {
+    clientMutationId: String
+    "This is the created object."
+    role: Role!
+}
+
+type CreateSessionPayload {
+    clientMutationId: String
+    "This is the created object."
+    session: Session!
+}
+
+type CreateStorePayload {
+    clientMutationId: String
+    "This is the created object."
+    store: Store!
+}
+
+type CreateUserPayload {
+    clientMutationId: String
+    "This is the created object."
+    user: User!
+}
+
+type DeleteAddressPayload {
+    "This is the deleted object."
+    address: Address!
+    clientMutationId: String
+}
+
+type DeleteClassPayload {
+    "This is the deleted class."
+    class: Class!
+    clientMutationId: String
+}
+
+type DeleteGallonPayload {
+    clientMutationId: String
+    "This is the deleted object."
+    gallon: Gallon!
+}
+
+type DeleteOrderItemPayload {
+    clientMutationId: String
+    "This is the deleted object."
+    orderItem: OrderItem!
+}
+
+type DeleteOrderPayload {
+    clientMutationId: String
+    "This is the deleted object."
+    order: Order!
+}
+
+type DeletePaymentMethodPayload {
+    clientMutationId: String
+    "This is the deleted object."
+    paymentMethod: PaymentMethod!
+}
+
+type DeleteRolePayload {
+    clientMutationId: String
+    "This is the deleted object."
+    role: Role!
+}
+
+type DeleteSessionPayload {
+    clientMutationId: String
+    "This is the deleted object."
+    session: Session!
+}
+
+type DeleteStorePayload {
+    clientMutationId: String
+    "This is the deleted object."
+    store: Store!
+}
+
+type DeleteUserPayload {
+    clientMutationId: String
+    "This is the deleted object."
+    user: User!
+}
+
+"The Element object type is used to return array items' value."
+type Element {
+    "Return the value of the element in the array"
+    value: Any!
+}
+
+"The FileInfo object type is used to return the information about files."
+type FileInfo {
+    "This is the file name."
+    name: String!
+    "This is the url in which the file can be downloaded."
+    url: String!
+}
+
+"The Gallon object type is used in operations that involve outputting objects of Gallon class."
+type Gallon implements Node & ParseObject {
+    ACL: ACL!
+    "This is the object company."
+    company: String
+    "This is the date in which the object was created."
+    createdAt: Date!
+    "The ID of an object"
+    id: ID!
+    "This is the object id."
+    objectId: ID!
+    "This is the object price."
+    price: Float
+    "This is the object store."
+    store: Store!
+    "This is the object type."
+    type: String
+    "This is the date in which the object was las updated."
+    updatedAt: Date!
+}
+
+"A connection to a list of items."
+type GallonConnection {
+    "This is the total matched objecs count that is returned when the count flag is set."
+    count: Int!
+    "A list of edges."
+    edges: [GallonEdge]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type GallonEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: Gallon
+}
+
+"The GeoPoint object type is used to return the information about geo point fields."
+type GeoPoint {
+    "This is the latitude."
+    latitude: Float!
+    "This is the longitude."
+    longitude: Float!
+}
+
+type LogInPayload {
+    clientMutationId: String
+    "This is the existing user that was logged in and returned as a viewer."
+    viewer: Viewer!
+}
+
+type LogOutPayload {
+    clientMutationId: String
+    "This is the existing user that was logged out and returned as a viewer."
+    viewer: Viewer!
+}
+
+"Mutation is the top level type for mutations."
+type Mutation {
+    "The callCloudCode mutation can be used to invoke a cloud code function."
+    callCloudCode(input: CallCloudCodeInput!): CallCloudCodePayload
+    "The createAddress mutation can be used to create a new object of the Address class."
+    createAddress(input: CreateAddressInput!): CreateAddressPayload
+    "The createClass mutation can be used to create the schema for a new object class."
+    createClass(input: CreateClassInput!): CreateClassPayload
+    "The createFile mutation can be used to create and upload a new file."
+    createFile(input: CreateFileInput!): CreateFilePayload
+    "The createGallon mutation can be used to create a new object of the Gallon class."
+    createGallon(input: CreateGallonInput!): CreateGallonPayload
+    "The createOrder mutation can be used to create a new object of the Order class."
+    createOrder(input: CreateOrderInput!): CreateOrderPayload
+    "The createOrderItem mutation can be used to create a new object of the OrderItem class."
+    createOrderItem(input: CreateOrderItemInput!): CreateOrderItemPayload
+    "The createPaymentMethod mutation can be used to create a new object of the PaymentMethod class."
+    createPaymentMethod(input: CreatePaymentMethodInput!): CreatePaymentMethodPayload
+    "The createRole mutation can be used to create a new object of the Role class."
+    createRole(input: CreateRoleInput!): CreateRolePayload
+    "The createSession mutation can be used to create a new object of the Session class."
+    createSession(input: CreateSessionInput!): CreateSessionPayload
+    "The createStore mutation can be used to create a new object of the Store class."
+    createStore(input: CreateStoreInput!): CreateStorePayload
+    "The createUser mutation can be used to create a new object of the User class."
+    createUser(input: CreateUserInput!): CreateUserPayload
+    "The deleteAddress mutation can be used to delete an object of the Address class."
+    deleteAddress(input: DeleteAddressInput!): DeleteAddressPayload
+    "The deleteClass mutation can be used to delete an existing object class."
+    deleteClass(input: DeleteClassInput!): DeleteClassPayload
+    "The deleteGallon mutation can be used to delete an object of the Gallon class."
+    deleteGallon(input: DeleteGallonInput!): DeleteGallonPayload
+    "The deleteOrder mutation can be used to delete an object of the Order class."
+    deleteOrder(input: DeleteOrderInput!): DeleteOrderPayload
+    "The deleteOrderItem mutation can be used to delete an object of the OrderItem class."
+    deleteOrderItem(input: DeleteOrderItemInput!): DeleteOrderItemPayload
+    "The deletePaymentMethod mutation can be used to delete an object of the PaymentMethod class."
+    deletePaymentMethod(input: DeletePaymentMethodInput!): DeletePaymentMethodPayload
+    "The deleteRole mutation can be used to delete an object of the Role class."
+    deleteRole(input: DeleteRoleInput!): DeleteRolePayload
+    "The deleteSession mutation can be used to delete an object of the Session class."
+    deleteSession(input: DeleteSessionInput!): DeleteSessionPayload
+    "The deleteStore mutation can be used to delete an object of the Store class."
+    deleteStore(input: DeleteStoreInput!): DeleteStorePayload
+    "The deleteUser mutation can be used to delete an object of the User class."
+    deleteUser(input: DeleteUserInput!): DeleteUserPayload
+    "The logIn mutation can be used to log in an existing user."
+    logIn(input: LogInInput!): LogInPayload
+    "The logOut mutation can be used to log out an existing user."
+    logOut(input: LogOutInput!): LogOutPayload
+    "The resetPassword mutation can be used to reset the password of an existing user."
+    resetPassword(input: ResetPasswordInput!): ResetPasswordPayload
+    "The sendVerificationEmail mutation can be used to send the verification email again."
+    sendVerificationEmail(input: SendVerificationEmailInput!): SendVerificationEmailPayload
+    "The signUp mutation can be used to create and sign up a new user."
+    signUp(input: SignUpInput!): SignUpPayload
+    "The updateAddress mutation can be used to update an object of the Address class."
+    updateAddress(input: UpdateAddressInput!): UpdateAddressPayload
+    "The updateClass mutation can be used to update the schema for an existing object class."
+    updateClass(input: UpdateClassInput!): UpdateClassPayload
+    "The updateGallon mutation can be used to update an object of the Gallon class."
+    updateGallon(input: UpdateGallonInput!): UpdateGallonPayload
+    "The updateOrder mutation can be used to update an object of the Order class."
+    updateOrder(input: UpdateOrderInput!): UpdateOrderPayload
+    "The updateOrderItem mutation can be used to update an object of the OrderItem class."
+    updateOrderItem(input: UpdateOrderItemInput!): UpdateOrderItemPayload
+    "The updatePaymentMethod mutation can be used to update an object of the PaymentMethod class."
+    updatePaymentMethod(input: UpdatePaymentMethodInput!): UpdatePaymentMethodPayload
+    "The updateRole mutation can be used to update an object of the Role class."
+    updateRole(input: UpdateRoleInput!): UpdateRolePayload
+    "The updateSession mutation can be used to update an object of the Session class."
+    updateSession(input: UpdateSessionInput!): UpdateSessionPayload
+    "The updateStore mutation can be used to update an object of the Store class."
+    updateStore(input: UpdateStoreInput!): UpdateStorePayload
+    "The updateUser mutation can be used to update an object of the User class."
+    updateUser(input: UpdateUserInput!): UpdateUserPayload
+}
+
+"The Order object type is used in operations that involve outputting objects of Order class."
+type Order implements Node & ParseObject {
+    ACL: ACL!
+    "This is the object address."
+    address: Address!
+    "This is the object buyer."
+    buyer: User!
+    "This is the date in which the object was created."
+    createdAt: Date!
+    "The ID of an object"
+    id: ID!
+    "This is the object id."
+    objectId: ID!
+    "This is the object orderStatus."
+    orderStatus: String!
+    "This is the object paymentMethod."
+    paymentMethod: PaymentMethod!
+    "This is the object products."
+    products(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [OrderItemOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: OrderItemWhereInput
+    ): OrderItemConnection!
+    "This is the object store."
+    store: Store!
+    "This is the date in which the object was las updated."
+    updatedAt: Date!
+}
+
+"A connection to a list of items."
+type OrderConnection {
+    "This is the total matched objecs count that is returned when the count flag is set."
+    count: Int!
+    "A list of edges."
+    edges: [OrderEdge]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type OrderEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: Order
+}
+
+"The OrderItem object type is used in operations that involve outputting objects of OrderItem class."
+type OrderItem implements Node & ParseObject {
+    ACL: ACL!
+    "This is the object amount."
+    amount: Float!
+    "This is the date in which the object was created."
+    createdAt: Date!
+    "The ID of an object"
+    id: ID!
+    "This is the object id."
+    objectId: ID!
+    "This is the object product."
+    product: Gallon!
+    "This is the date in which the object was las updated."
+    updatedAt: Date!
+}
+
+"A connection to a list of items."
+type OrderItemConnection {
+    "This is the total matched objecs count that is returned when the count flag is set."
+    count: Int!
+    "A list of edges."
+    edges: [OrderItemEdge]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type OrderItemEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: OrderItem
+}
+
+"Information about pagination in a connection."
+type PageInfo {
+    "When paginating forwards, the cursor to continue."
+    endCursor: String
+    "When paginating forwards, are there more items?"
+    hasNextPage: Boolean!
+    "When paginating backwards, are there more items?"
+    hasPreviousPage: Boolean!
+    "When paginating backwards, the cursor to continue."
+    startCursor: String
+}
+
+"The PaymentMethod object type is used in operations that involve outputting objects of PaymentMethod class."
+type PaymentMethod implements Node & ParseObject {
+    ACL: ACL!
+    "This is the date in which the object was created."
+    createdAt: Date!
+    "The ID of an object"
+    id: ID!
+    "This is the object imageUri."
+    imageUri: String!
+    "This is the object name."
+    name: String!
+    "This is the object id."
+    objectId: ID!
+    "This is the object type."
+    type: String!
+    "This is the date in which the object was las updated."
+    updatedAt: Date!
+}
+
+"A connection to a list of items."
+type PaymentMethodConnection {
+    "This is the total matched objecs count that is returned when the count flag is set."
+    count: Int!
+    "A list of edges."
+    edges: [PaymentMethodEdge]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type PaymentMethodEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: PaymentMethod
+}
+
+"Allow to manage public rights."
+type PublicACL {
+    "Allow anyone to read the current object."
+    read: Boolean
+    "Allow anyone to write on the current object."
+    write: Boolean
+}
+
+"Query is the top level type for queries."
+type Query {
+    "The address query can be used to get an object of the Address class by its id."
+    address(
+        "This is the object id. You can use either the global or the object id."
+        id: ID!,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput
+    ): Address!
+    "The addresses query can be used to find objects of the Address class."
+    addresses(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [AddressOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: AddressWhereInput
+    ): AddressConnection!
+    "The class query can be used to retrieve an existing object class."
+    class(
+        "This is the name of the object class."
+        name: String!
+    ): Class!
+    "The classes query can be used to retrieve the existing object classes."
+    classes: [Class!]!
+    "The gallon query can be used to get an object of the Gallon class by its id."
+    gallon(
+        "This is the object id. You can use either the global or the object id."
+        id: ID!,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput
+    ): Gallon!
+    "The gallons query can be used to find objects of the Gallon class."
+    gallons(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [GallonOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: GallonWhereInput
+    ): GallonConnection!
+    "The health query can be used to check if the server is up and running."
+    health: Boolean!
+    "Fetches an object given its ID"
+    node(
+        "The ID of an object"
+        id: ID!
+    ): Node
+    "The order query can be used to get an object of the Order class by its id."
+    order(
+        "This is the object id. You can use either the global or the object id."
+        id: ID!,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput
+    ): Order!
+    "The orderItem query can be used to get an object of the OrderItem class by its id."
+    orderItem(
+        "This is the object id. You can use either the global or the object id."
+        id: ID!,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput
+    ): OrderItem!
+    "The orderItems query can be used to find objects of the OrderItem class."
+    orderItems(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [OrderItemOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: OrderItemWhereInput
+    ): OrderItemConnection!
+    "The orders query can be used to find objects of the Order class."
+    orders(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [OrderOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: OrderWhereInput
+    ): OrderConnection!
+    "The paymentMethod query can be used to get an object of the PaymentMethod class by its id."
+    paymentMethod(
+        "This is the object id. You can use either the global or the object id."
+        id: ID!,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput
+    ): PaymentMethod!
+    "The paymentMethods query can be used to find objects of the PaymentMethod class."
+    paymentMethods(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [PaymentMethodOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: PaymentMethodWhereInput
+    ): PaymentMethodConnection!
+    "The role query can be used to get an object of the Role class by its id."
+    role(
+        "This is the object id. You can use either the global or the object id."
+        id: ID!,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput
+    ): Role!
+    "The roles query can be used to find objects of the Role class."
+    roles(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [RoleOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: RoleWhereInput
+    ): RoleConnection!
+    "The session query can be used to get an object of the Session class by its id."
+    session(
+        "This is the object id. You can use either the global or the object id."
+        id: ID!,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput
+    ): Session!
+    "The sessions query can be used to find objects of the Session class."
+    sessions(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [SessionOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: SessionWhereInput
+    ): SessionConnection!
+    "The store query can be used to get an object of the Store class by its id."
+    store(
+        "This is the object id. You can use either the global or the object id."
+        id: ID!,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput
+    ): Store!
+    "The stores query can be used to find objects of the Store class."
+    stores(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [StoreOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: StoreWhereInput
+    ): StoreConnection!
+    "The user query can be used to get an object of the User class by its id."
+    user(
+        "This is the object id. You can use either the global or the object id."
+        id: ID!,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput
+    ): User!
+    "The users query can be used to find objects of the User class."
+    users(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [UserOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: UserWhereInput
+    ): UserConnection!
+    "The viewer query can be used to return the current user data."
+    viewer: Viewer!
+}
+
+type ResetPasswordPayload {
+    clientMutationId: String
+    "It's always true."
+    ok: Boolean!
+}
+
+"The Role object type is used in operations that involve outputting objects of Role class."
+type Role implements Node & ParseObject {
+    ACL: ACL!
+    "This is the date in which the object was created."
+    createdAt: Date!
+    "The ID of an object"
+    id: ID!
+    "This is the object name."
+    name: String
+    "This is the object id."
+    objectId: ID!
+    "This is the object roles."
+    roles(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [RoleOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: RoleWhereInput
+    ): RoleConnection!
+    "This is the date in which the object was las updated."
+    updatedAt: Date!
+    "This is the object users."
+    users(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [UserOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: UserWhereInput
+    ): UserConnection!
+}
+
+"Allow to manage roles in ACL. If read and write are null the role have read and write rights."
+type RoleACL {
+    "Allow users who are members of the role to read the current object."
+    read: Boolean!
+    "Name of the targetted Role."
+    roleName: ID!
+    "Allow users who are members of the role to write on the current object."
+    write: Boolean!
+}
+
+"A connection to a list of items."
+type RoleConnection {
+    "This is the total matched objecs count that is returned when the count flag is set."
+    count: Int!
+    "A list of edges."
+    edges: [RoleEdge]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type RoleEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: Role
+}
+
+"The SchemaACLField is used to return information of an ACL field."
+type SchemaACLField implements SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaArrayField is used to return information of an Array field."
+type SchemaArrayField implements SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaBooleanField is used to return information of a Boolean field."
+type SchemaBooleanField implements SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaBytesField is used to return information of a Bytes field."
+type SchemaBytesField implements SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaDateField is used to return information of a Date field."
+type SchemaDateField implements SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaFileField is used to return information of a File field."
+type SchemaFileField implements SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaGeoPointField is used to return information of a Geo Point field."
+type SchemaGeoPointField implements SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaNumberField is used to return information of a Number field."
+type SchemaNumberField implements SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaObjectField is used to return information of an Object field."
+type SchemaObjectField implements SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaPointerField is used to return information of a Pointer field."
+type SchemaPointerField implements SchemaField {
+    "This is the field name."
+    name: String!
+    "This is the name of the target class for the field."
+    targetClassName: String!
+}
+
+"The SchemaPolygonField is used to return information of a Polygon field."
+type SchemaPolygonField implements SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaRelationField is used to return information of a Relation field."
+type SchemaRelationField implements SchemaField {
+    "This is the field name."
+    name: String!
+    "This is the name of the target class for the field."
+    targetClassName: String!
+}
+
+"The SchemaStringField is used to return information of a String field."
+type SchemaStringField implements SchemaField {
+    "This is the field name."
+    name: String!
+}
+
+type SendVerificationEmailPayload {
+    clientMutationId: String
+    "It's always true."
+    ok: Boolean!
+}
+
+"The Session object type is used in operations that involve outputting objects of Session class."
+type Session implements Node & ParseObject {
+    ACL: ACL!
+    "This is the date in which the object was created."
+    createdAt: Date!
+    "This is the object createdWith."
+    createdWith: Object
+    "This is the object expiresAt."
+    expiresAt: Date
+    "The ID of an object"
+    id: ID!
+    "This is the object installationId."
+    installationId: String
+    "This is the object id."
+    objectId: ID!
+    "This is the object restricted."
+    restricted: Boolean
+    "This is the object sessionToken."
+    sessionToken: String
+    "This is the date in which the object was las updated."
+    updatedAt: Date!
+    "This is the object user."
+    user: User
+}
+
+"A connection to a list of items."
+type SessionConnection {
+    "This is the total matched objecs count that is returned when the count flag is set."
+    count: Int!
+    "A list of edges."
+    edges: [SessionEdge]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type SessionEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: Session
+}
+
+type SignUpPayload {
+    clientMutationId: String
+    "This is the new user that was created, signed up and returned as a viewer."
+    viewer: Viewer!
+}
+
+"The Store object type is used in operations that involve outputting objects of Store class."
+type Store implements Node & ParseObject {
+    ACL: ACL!
+    "This is the object address."
+    address: Address
+    "This is the date in which the object was created."
+    createdAt: Date!
+    "The ID of an object"
+    id: ID!
+    "This is the object maxDeliveryTime."
+    maxDeliveryTime: Float
+    "This is the object minDeliveryTime."
+    minDeliveryTime: Float
+    "This is the object name."
+    name: String!
+    "This is the object id."
+    objectId: ID!
+    "This is the object rating."
+    rating: Float
+    "This is the date in which the object was las updated."
+    updatedAt: Date!
+}
+
+"A connection to a list of items."
+type StoreConnection {
+    "This is the total matched objecs count that is returned when the count flag is set."
+    count: Int!
+    "A list of edges."
+    edges: [StoreEdge]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type StoreEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: Store
+}
+
+type UpdateAddressPayload {
+    "This is the updated object."
+    address: Address!
+    clientMutationId: String
+}
+
+type UpdateClassPayload {
+    "This is the updated class."
+    class: Class!
+    clientMutationId: String
+}
+
+type UpdateGallonPayload {
+    clientMutationId: String
+    "This is the updated object."
+    gallon: Gallon!
+}
+
+type UpdateOrderItemPayload {
+    clientMutationId: String
+    "This is the updated object."
+    orderItem: OrderItem!
+}
+
+type UpdateOrderPayload {
+    clientMutationId: String
+    "This is the updated object."
+    order: Order!
+}
+
+type UpdatePaymentMethodPayload {
+    clientMutationId: String
+    "This is the updated object."
+    paymentMethod: PaymentMethod!
+}
+
+type UpdateRolePayload {
+    clientMutationId: String
+    "This is the updated object."
+    role: Role!
+}
+
+type UpdateSessionPayload {
+    clientMutationId: String
+    "This is the updated object."
+    session: Session!
+}
+
+type UpdateStorePayload {
+    clientMutationId: String
+    "This is the updated object."
+    store: Store!
+}
+
+type UpdateUserPayload {
+    clientMutationId: String
+    "This is the updated object."
+    user: User!
+}
+
+"The User object type is used in operations that involve outputting objects of User class."
+type User implements Node & ParseObject {
+    ACL: ACL!
+    "This is the object authData."
+    authData: Object
+    "This is the object cpf."
+    cpf: String
+    "This is the date in which the object was created."
+    createdAt: Date!
+    "This is the object email."
+    email: String
+    "This is the object emailVerified."
+    emailVerified: Boolean
+    "This is the object fullName."
+    fullName: String
+    "The ID of an object"
+    id: ID!
+    "This is the object id."
+    objectId: ID!
+    "This is the object phone."
+    phone: String
+    "This is the date in which the object was las updated."
+    updatedAt: Date!
+    "This is the object username."
+    username: String
+}
+
+"Allow to manage users in ACL. If read and write are null the users have read and write rights."
+type UserACL {
+    "Allow the user to read the current object."
+    read: Boolean!
+    "ID of the targetted User."
+    userId: ID!
+    "Allow the user to write on the current object."
+    write: Boolean!
+}
+
+"A connection to a list of items."
+type UserConnection {
+    "This is the total matched objecs count that is returned when the count flag is set."
+    count: Int!
+    "A list of edges."
+    edges: [UserEdge]
+    "Information to aid in pagination."
+    pageInfo: PageInfo!
+}
+
+"An edge in a connection."
+type UserEdge {
+    "A cursor for use in pagination"
+    cursor: String!
+    "The item at the end of the edge"
+    node: User
+}
+
+"The Viewer object type is used in operations that involve outputting the current user data."
+type Viewer {
+    "The current user session token."
+    sessionToken: String!
+    "This is the current user."
+    user: User!
+}
+
+"The AddressOrder input type is used when sorting objects of the Address class."
+enum AddressOrder {
+    ACL_ASC
+    ACL_DESC
+    city_ASC
+    city_DESC
+    complement_ASC
+    complement_DESC
+    coordinate_ASC
+    coordinate_DESC
+    country_ASC
+    country_DESC
+    createdAt_ASC
+    createdAt_DESC
+    district_ASC
+    district_DESC
+    id_ASC
+    id_DESC
+    number_ASC
+    number_DESC
+    objectId_ASC
+    objectId_DESC
+    pointOfReference_ASC
+    pointOfReference_DESC
+    postalCode_ASC
+    postalCode_DESC
+    state_ASC
+    state_DESC
+    streetName_ASC
+    streetName_DESC
+    updatedAt_ASC
+    updatedAt_DESC
+}
+
+"The CloudCodeFunction enum type contains a list of all available cloud code functions."
+enum CloudCodeFunction {
+    getBestStores
+    getStoreGallons
+    hello
+}
+
+"The GallonOrder input type is used when sorting objects of the Gallon class."
+enum GallonOrder {
+    ACL_ASC
+    ACL_DESC
+    company_ASC
+    company_DESC
+    createdAt_ASC
+    createdAt_DESC
+    id_ASC
+    id_DESC
+    objectId_ASC
+    objectId_DESC
+    price_ASC
+    price_DESC
+    store_ASC
+    store_DESC
+    type_ASC
+    type_DESC
+    updatedAt_ASC
+    updatedAt_DESC
+}
+
+"The OrderItemOrder input type is used when sorting objects of the OrderItem class."
+enum OrderItemOrder {
+    ACL_ASC
+    ACL_DESC
+    amount_ASC
+    amount_DESC
+    createdAt_ASC
+    createdAt_DESC
+    id_ASC
+    id_DESC
+    objectId_ASC
+    objectId_DESC
+    product_ASC
+    product_DESC
+    updatedAt_ASC
+    updatedAt_DESC
+}
+
+"The OrderOrder input type is used when sorting objects of the Order class."
+enum OrderOrder {
+    ACL_ASC
+    ACL_DESC
+    address_ASC
+    address_DESC
+    buyer_ASC
+    buyer_DESC
+    createdAt_ASC
+    createdAt_DESC
+    id_ASC
+    id_DESC
+    objectId_ASC
+    objectId_DESC
+    orderStatus_ASC
+    orderStatus_DESC
+    paymentMethod_ASC
+    paymentMethod_DESC
+    products_ASC
+    products_DESC
+    store_ASC
+    store_DESC
+    updatedAt_ASC
+    updatedAt_DESC
+}
+
+"The PaymentMethodOrder input type is used when sorting objects of the PaymentMethod class."
+enum PaymentMethodOrder {
+    ACL_ASC
+    ACL_DESC
+    createdAt_ASC
+    createdAt_DESC
+    id_ASC
+    id_DESC
+    imageUri_ASC
+    imageUri_DESC
+    name_ASC
+    name_DESC
+    objectId_ASC
+    objectId_DESC
+    type_ASC
+    type_DESC
+    updatedAt_ASC
+    updatedAt_DESC
+}
+
+"The ReadPreference enum type is used in queries in order to select in which database replica the operation must run."
+enum ReadPreference {
+    NEAREST
+    PRIMARY
+    PRIMARY_PREFERRED
+    SECONDARY
+    SECONDARY_PREFERRED
+}
+
+"The RoleOrder input type is used when sorting objects of the Role class."
+enum RoleOrder {
+    ACL_ASC
+    ACL_DESC
+    createdAt_ASC
+    createdAt_DESC
+    id_ASC
+    id_DESC
+    name_ASC
+    name_DESC
+    objectId_ASC
+    objectId_DESC
+    roles_ASC
+    roles_DESC
+    updatedAt_ASC
+    updatedAt_DESC
+    users_ASC
+    users_DESC
+}
+
+"The SessionOrder input type is used when sorting objects of the Session class."
+enum SessionOrder {
+    ACL_ASC
+    ACL_DESC
+    createdAt_ASC
+    createdAt_DESC
+    createdWith_ASC
+    createdWith_DESC
+    expiresAt_ASC
+    expiresAt_DESC
+    id_ASC
+    id_DESC
+    installationId_ASC
+    installationId_DESC
+    objectId_ASC
+    objectId_DESC
+    restricted_ASC
+    restricted_DESC
+    sessionToken_ASC
+    sessionToken_DESC
+    updatedAt_ASC
+    updatedAt_DESC
+    user_ASC
+    user_DESC
+}
+
+"The StoreOrder input type is used when sorting objects of the Store class."
+enum StoreOrder {
+    ACL_ASC
+    ACL_DESC
+    address_ASC
+    address_DESC
+    createdAt_ASC
+    createdAt_DESC
+    id_ASC
+    id_DESC
+    maxDeliveryTime_ASC
+    maxDeliveryTime_DESC
+    minDeliveryTime_ASC
+    minDeliveryTime_DESC
+    name_ASC
+    name_DESC
+    objectId_ASC
+    objectId_DESC
+    rating_ASC
+    rating_DESC
+    updatedAt_ASC
+    updatedAt_DESC
+}
+
+"The UserOrder input type is used when sorting objects of the User class."
+enum UserOrder {
+    ACL_ASC
+    ACL_DESC
+    authData_ASC
+    authData_DESC
+    cpf_ASC
+    cpf_DESC
+    createdAt_ASC
+    createdAt_DESC
+    emailVerified_ASC
+    emailVerified_DESC
+    email_ASC
+    email_DESC
+    fullName_ASC
+    fullName_DESC
+    id_ASC
+    id_DESC
+    objectId_ASC
+    objectId_DESC
+    password_ASC
+    password_DESC
+    phone_ASC
+    phone_DESC
+    updatedAt_ASC
+    updatedAt_DESC
+    username_ASC
+    username_DESC
+}
+
+"Allow to manage access rights. If not provided object will be publicly readable and writable"
+input ACLInput {
+    "Public access control list."
+    public: PublicACLInput
+    "Access control list for roles."
+    roles: [RoleACLInput!]
+    "Access control list for users."
+    users: [UserACLInput!]
+}
+
+"Allow to link OR add and link an object of the Address class."
+input AddressPointerInput {
+    "Create and link an object from Address class."
+    createAndLink: CreateAddressFieldsInput
+    "Link an existing object from Address class. You can use either the global or the object id."
+    link: ID
+}
+
+"Allow to add, remove, createAndAdd objects of the Address class into a relation field."
+input AddressRelationInput {
+    "Add existing objects from the Address class into the relation. You can use either the global or the object ids."
+    add: [ID!]
+    "Create and add objects of the Address class into the relation."
+    createAndAdd: [CreateAddressFieldsInput!]
+    "Remove existing objects from the Address class out of the relation. You can use either the global or the object ids."
+    remove: [ID!]
+}
+
+"The AddressRelationWhereInput input type is used in operations that involve filtering objects of Address class."
+input AddressRelationWhereInput {
+    "Check if the relation/pointer contains objects."
+    exists: Boolean
+    "Run a relational/pointer query where at least one child object can match."
+    have: AddressWhereInput
+    "Run an inverted relational/pointer query where at least one child object can match."
+    haveNot: AddressWhereInput
+}
+
+"The AddressWhereInput input type is used in operations that involve filtering objects of Address class."
+input AddressWhereInput {
+    "This is the object ACL."
+    ACL: ObjectWhereInput
+    "This is the AND operator to compound constraints."
+    AND: [AddressWhereInput!]
+    "This is the NOR operator to compound constraints."
+    NOR: [AddressWhereInput!]
+    "This is the OR operator to compound constraints."
+    OR: [AddressWhereInput!]
+    "This is the object city."
+    city: StringWhereInput
+    "This is the object complement."
+    complement: StringWhereInput
+    "This is the object coordinate."
+    coordinate: GeoPointWhereInput
+    "This is the object country."
+    country: StringWhereInput
+    "This is the object createdAt."
+    createdAt: DateWhereInput
+    "This is the object district."
+    district: StringWhereInput
+    "This is the object id."
+    id: IdWhereInput
+    "This is the object number."
+    number: NumberWhereInput
+    "This is the object objectId."
+    objectId: IdWhereInput
+    "This is the object pointOfReference."
+    pointOfReference: StringWhereInput
+    "This is the object postalCode."
+    postalCode: StringWhereInput
+    "This is the object state."
+    state: StringWhereInput
+    "This is the object streetName."
+    streetName: StringWhereInput
+    "This is the object updatedAt."
+    updatedAt: DateWhereInput
+}
+
+"The ArrayWhereInput input type is used in operations that involve filtering objects by a field of type Array."
+input ArrayWhereInput {
+    "This is the containedBy operator to specify a constraint to select the objects where the values of an array field is contained by another specified array."
+    containedBy: [Any]
+    "This is the contains operator to specify a constraint to select the objects where the values of an array field contain all elements of another specified array."
+    contains: [Any]
+    "This is the equalTo operator to specify a constraint to select the objects where the value of a field equals to a specified value."
+    equalTo: Any
+    "This is the exists operator to specify a constraint to select the objects where a field exists (or do not exist)."
+    exists: Boolean
+    "This is the greaterThan operator to specify a constraint to select the objects where the value of a field is greater than a specified value."
+    greaterThan: Any
+    "This is the greaterThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is greater than or equal to a specified value."
+    greaterThanOrEqualTo: Any
+    "This is the in operator to specify a constraint to select the objects where the value of a field equals any value in the specified array."
+    in: [Any]
+    "This is the inQueryKey operator to specify a constraint to select the objects where a field equals to a key in the result of a different query."
+    inQueryKey: SelectInput
+    "This is the lessThan operator to specify a constraint to select the objects where the value of a field is less than a specified value."
+    lessThan: Any
+    "This is the lessThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is less than or equal to a specified value."
+    lessThanOrEqualTo: Any
+    "This is the notEqualTo operator to specify a constraint to select the objects where the value of a field do not equal to a specified value."
+    notEqualTo: Any
+    "This is the notIn operator to specify a constraint to select the objects where the value of a field do not equal any value in the specified array."
+    notIn: [Any]
+    "This is the notInQueryKey operator to specify a constraint to select the objects where a field do not equal to a key in the result of a different query."
+    notInQueryKey: SelectInput
+}
+
+"The BooleanWhereInput input type is used in operations that involve filtering objects by a field of type Boolean."
+input BooleanWhereInput {
+    "This is the equalTo operator to specify a constraint to select the objects where the value of a field equals to a specified value."
+    equalTo: Boolean
+    "This is the exists operator to specify a constraint to select the objects where a field exists (or do not exist)."
+    exists: Boolean
+    "This is the inQueryKey operator to specify a constraint to select the objects where a field equals to a key in the result of a different query."
+    inQueryKey: SelectInput
+    "This is the notEqualTo operator to specify a constraint to select the objects where the value of a field do not equal to a specified value."
+    notEqualTo: Boolean
+    "This is the notInQueryKey operator to specify a constraint to select the objects where a field do not equal to a key in the result of a different query."
+    notInQueryKey: SelectInput
+}
+
+"The BoxInput type is used to specifiy a box operation on a within geo query."
+input BoxInput {
+    "This is the bottom left coordinates of the box."
+    bottomLeft: GeoPointInput!
+    "This is the upper right coordinates of the box."
+    upperRight: GeoPointInput!
+}
+
+"The BytesWhereInput input type is used in operations that involve filtering objects by a field of type Bytes."
+input BytesWhereInput {
+    "This is the equalTo operator to specify a constraint to select the objects where the value of a field equals to a specified value."
+    equalTo: Bytes
+    "This is the exists operator to specify a constraint to select the objects where a field exists (or do not exist)."
+    exists: Boolean
+    "This is the greaterThan operator to specify a constraint to select the objects where the value of a field is greater than a specified value."
+    greaterThan: Bytes
+    "This is the greaterThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is greater than or equal to a specified value."
+    greaterThanOrEqualTo: Bytes
+    "This is the in operator to specify a constraint to select the objects where the value of a field equals any value in the specified array."
+    in: [Bytes]
+    "This is the inQueryKey operator to specify a constraint to select the objects where a field equals to a key in the result of a different query."
+    inQueryKey: SelectInput
+    "This is the lessThan operator to specify a constraint to select the objects where the value of a field is less than a specified value."
+    lessThan: Bytes
+    "This is the lessThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is less than or equal to a specified value."
+    lessThanOrEqualTo: Bytes
+    "This is the notEqualTo operator to specify a constraint to select the objects where the value of a field do not equal to a specified value."
+    notEqualTo: Bytes
+    "This is the notIn operator to specify a constraint to select the objects where the value of a field do not equal any value in the specified array."
+    notIn: [Bytes]
+    "This is the notInQueryKey operator to specify a constraint to select the objects where a field do not equal to a key in the result of a different query."
+    notInQueryKey: SelectInput
+}
+
+input CallCloudCodeInput {
+    clientMutationId: String
+    "This is the function to be called."
+    functionName: CloudCodeFunction!
+    "These are the params to be passed to the function."
+    params: Object
+}
+
+"The CenterSphereInput type is used to specifiy a centerSphere operation on a geoWithin query."
+input CenterSphereInput {
+    "This is the center of the sphere."
+    center: GeoPointInput!
+    "This is the radius of the sphere."
+    distance: Float!
+}
+
+"The CreateAddressFieldsInput input type is used in operations that involve creation of objects in the Address class."
+input CreateAddressFieldsInput {
+    ACL: ACLInput
+    "This is the object city."
+    city: String
+    "This is the object complement."
+    complement: String
+    "This is the object coordinate."
+    coordinate: GeoPointInput
+    "This is the object country."
+    country: String
+    "This is the object district."
+    district: String
+    "This is the object number."
+    number: Float
+    "This is the object pointOfReference."
+    pointOfReference: String
+    "This is the object postalCode."
+    postalCode: String
+    "This is the object state."
+    state: String
+    "This is the object streetName."
+    streetName: String
+}
+
+input CreateAddressInput {
+    clientMutationId: String
+    "These are the fields that will be used to create the new object."
+    fields: CreateAddressFieldsInput
+}
+
+input CreateClassInput {
+    clientMutationId: String
+    "This is the name of the object class."
+    name: String!
+    "These are the schema's fields of the object class."
+    schemaFields: SchemaFieldsInput
+}
+
+input CreateFileInput {
+    clientMutationId: String
+    "This is the new file to be created and uploaded."
+    upload: Upload!
+}
+
+"The CreateGallonFieldsInput input type is used in operations that involve creation of objects in the Gallon class."
+input CreateGallonFieldsInput {
+    ACL: ACLInput
+    "This is the object company."
+    company: String
+    "This is the object price."
+    price: Float
+    "This is the object store."
+    store: StorePointerInput!
+    "This is the object type."
+    type: String
+}
+
+input CreateGallonInput {
+    clientMutationId: String
+    "These are the fields that will be used to create the new object."
+    fields: CreateGallonFieldsInput
+}
+
+"The CreateOrderFieldsInput input type is used in operations that involve creation of objects in the Order class."
+input CreateOrderFieldsInput {
+    ACL: ACLInput
+    "This is the object address."
+    address: AddressPointerInput!
+    "This is the object buyer."
+    buyer: UserPointerInput!
+    "This is the object orderStatus."
+    orderStatus: String!
+    "This is the object paymentMethod."
+    paymentMethod: PaymentMethodPointerInput!
+    "This is the object products."
+    products: OrderItemRelationInput
+    "This is the object store."
+    store: StorePointerInput!
+}
+
+input CreateOrderInput {
+    clientMutationId: String
+    "These are the fields that will be used to create the new object."
+    fields: CreateOrderFieldsInput
+}
+
+"The CreateOrderItemFieldsInput input type is used in operations that involve creation of objects in the OrderItem class."
+input CreateOrderItemFieldsInput {
+    ACL: ACLInput
+    "This is the object amount."
+    amount: Float!
+    "This is the object product."
+    product: GallonPointerInput!
+}
+
+input CreateOrderItemInput {
+    clientMutationId: String
+    "These are the fields that will be used to create the new object."
+    fields: CreateOrderItemFieldsInput
+}
+
+"The CreatePaymentMethodFieldsInput input type is used in operations that involve creation of objects in the PaymentMethod class."
+input CreatePaymentMethodFieldsInput {
+    ACL: ACLInput
+    "This is the object imageUri."
+    imageUri: String!
+    "This is the object name."
+    name: String!
+    "This is the object type."
+    type: String!
+}
+
+input CreatePaymentMethodInput {
+    clientMutationId: String
+    "These are the fields that will be used to create the new object."
+    fields: CreatePaymentMethodFieldsInput
+}
+
+"The CreateRoleFieldsInput input type is used in operations that involve creation of objects in the Role class."
+input CreateRoleFieldsInput {
+    ACL: ACLInput
+    "This is the object name."
+    name: String
+    "This is the object roles."
+    roles: RoleRelationInput
+    "This is the object users."
+    users: UserRelationInput
+}
+
+input CreateRoleInput {
+    clientMutationId: String
+    "These are the fields that will be used to create the new object."
+    fields: CreateRoleFieldsInput
+}
+
+"The CreateSessionFieldsInput input type is used in operations that involve creation of objects in the Session class."
+input CreateSessionFieldsInput {
+    ACL: ACLInput
+    "This is the object createdWith."
+    createdWith: Object
+    "This is the object expiresAt."
+    expiresAt: Date
+    "This is the object installationId."
+    installationId: String
+    "This is the object restricted."
+    restricted: Boolean
+    "This is the object sessionToken."
+    sessionToken: String
+    "This is the object user."
+    user: UserPointerInput
+}
+
+input CreateSessionInput {
+    clientMutationId: String
+    "These are the fields that will be used to create the new object."
+    fields: CreateSessionFieldsInput
+}
+
+"The CreateStoreFieldsInput input type is used in operations that involve creation of objects in the Store class."
+input CreateStoreFieldsInput {
+    ACL: ACLInput
+    "This is the object address."
+    address: AddressPointerInput
+    "This is the object maxDeliveryTime."
+    maxDeliveryTime: Float
+    "This is the object minDeliveryTime."
+    minDeliveryTime: Float
+    "This is the object name."
+    name: String!
+    "This is the object rating."
+    rating: Float
+}
+
+input CreateStoreInput {
+    clientMutationId: String
+    "These are the fields that will be used to create the new object."
+    fields: CreateStoreFieldsInput
+}
+
+"The CreateUserFieldsInput input type is used in operations that involve creation of objects in the User class."
+input CreateUserFieldsInput {
+    ACL: ACLInput
+    "This is the object authData."
+    authData: Object
+    "This is the object cpf."
+    cpf: String
+    "This is the object email."
+    email: String
+    "This is the object emailVerified."
+    emailVerified: Boolean
+    "This is the object fullName."
+    fullName: String
+    "This is the object password."
+    password: String!
+    "This is the object phone."
+    phone: String
+    "This is the object username."
+    username: String!
+}
+
+input CreateUserInput {
+    clientMutationId: String
+    "These are the fields that will be used to create the new object."
+    fields: CreateUserFieldsInput
+}
+
+"The DateWhereInput input type is used in operations that involve filtering objects by a field of type Date."
+input DateWhereInput {
+    "This is the equalTo operator to specify a constraint to select the objects where the value of a field equals to a specified value."
+    equalTo: Date
+    "This is the exists operator to specify a constraint to select the objects where a field exists (or do not exist)."
+    exists: Boolean
+    "This is the greaterThan operator to specify a constraint to select the objects where the value of a field is greater than a specified value."
+    greaterThan: Date
+    "This is the greaterThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is greater than or equal to a specified value."
+    greaterThanOrEqualTo: Date
+    "This is the in operator to specify a constraint to select the objects where the value of a field equals any value in the specified array."
+    in: [Date]
+    "This is the inQueryKey operator to specify a constraint to select the objects where a field equals to a key in the result of a different query."
+    inQueryKey: SelectInput
+    "This is the lessThan operator to specify a constraint to select the objects where the value of a field is less than a specified value."
+    lessThan: Date
+    "This is the lessThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is less than or equal to a specified value."
+    lessThanOrEqualTo: Date
+    "This is the notEqualTo operator to specify a constraint to select the objects where the value of a field do not equal to a specified value."
+    notEqualTo: Date
+    "This is the notIn operator to specify a constraint to select the objects where the value of a field do not equal any value in the specified array."
+    notIn: [Date]
+    "This is the notInQueryKey operator to specify a constraint to select the objects where a field do not equal to a key in the result of a different query."
+    notInQueryKey: SelectInput
+}
+
+input DeleteAddressInput {
+    clientMutationId: String
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+input DeleteClassInput {
+    clientMutationId: String
+    "This is the name of the object class."
+    name: String!
+}
+
+input DeleteGallonInput {
+    clientMutationId: String
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+input DeleteOrderInput {
+    clientMutationId: String
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+input DeleteOrderItemInput {
+    clientMutationId: String
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+input DeletePaymentMethodInput {
+    clientMutationId: String
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+input DeleteRoleInput {
+    clientMutationId: String
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+input DeleteSessionInput {
+    clientMutationId: String
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+input DeleteStoreInput {
+    clientMutationId: String
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+input DeleteUserInput {
+    clientMutationId: String
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+"The FileWhereInput input type is used in operations that involve filtering objects by a field of type File."
+input FileWhereInput {
+    "This is the equalTo operator to specify a constraint to select the objects where the value of a field equals to a specified value."
+    equalTo: File
+    "This is the exists operator to specify a constraint to select the objects where a field exists (or do not exist)."
+    exists: Boolean
+    "This is the greaterThan operator to specify a constraint to select the objects where the value of a field is greater than a specified value."
+    greaterThan: File
+    "This is the greaterThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is greater than or equal to a specified value."
+    greaterThanOrEqualTo: File
+    "This is the in operator to specify a constraint to select the objects where the value of a field equals any value in the specified array."
+    in: [File]
+    "This is the inQueryKey operator to specify a constraint to select the objects where a field equals to a key in the result of a different query."
+    inQueryKey: SelectInput
+    "This is the lessThan operator to specify a constraint to select the objects where the value of a field is less than a specified value."
+    lessThan: File
+    "This is the lessThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is less than or equal to a specified value."
+    lessThanOrEqualTo: File
+    "This is the matchesRegex operator to specify a constraint to select the objects where the value of a field matches a specified regular expression."
+    matchesRegex: String
+    "This is the notEqualTo operator to specify a constraint to select the objects where the value of a field do not equal to a specified value."
+    notEqualTo: File
+    "This is the notIn operator to specify a constraint to select the objects where the value of a field do not equal any value in the specified array."
+    notIn: [File]
+    "This is the notInQueryKey operator to specify a constraint to select the objects where a field do not equal to a key in the result of a different query."
+    notInQueryKey: SelectInput
+    "This is the options operator to specify optional flags (such as \"i\" and \"m\") to be added to a matchesRegex operation in the same set of constraints."
+    options: String
+}
+
+"Allow to link OR add and link an object of the Gallon class."
+input GallonPointerInput {
+    "Create and link an object from Gallon class."
+    createAndLink: CreateGallonFieldsInput
+    "Link an existing object from Gallon class. You can use either the global or the object id."
+    link: ID
+}
+
+"Allow to add, remove, createAndAdd objects of the Gallon class into a relation field."
+input GallonRelationInput {
+    "Add existing objects from the Gallon class into the relation. You can use either the global or the object ids."
+    add: [ID!]
+    "Create and add objects of the Gallon class into the relation."
+    createAndAdd: [CreateGallonFieldsInput!]
+    "Remove existing objects from the Gallon class out of the relation. You can use either the global or the object ids."
+    remove: [ID!]
+}
+
+"The GallonRelationWhereInput input type is used in operations that involve filtering objects of Gallon class."
+input GallonRelationWhereInput {
+    "Check if the relation/pointer contains objects."
+    exists: Boolean
+    "Run a relational/pointer query where at least one child object can match."
+    have: GallonWhereInput
+    "Run an inverted relational/pointer query where at least one child object can match."
+    haveNot: GallonWhereInput
+}
+
+"The GallonWhereInput input type is used in operations that involve filtering objects of Gallon class."
+input GallonWhereInput {
+    "This is the object ACL."
+    ACL: ObjectWhereInput
+    "This is the AND operator to compound constraints."
+    AND: [GallonWhereInput!]
+    "This is the NOR operator to compound constraints."
+    NOR: [GallonWhereInput!]
+    "This is the OR operator to compound constraints."
+    OR: [GallonWhereInput!]
+    "This is the object company."
+    company: StringWhereInput
+    "This is the object createdAt."
+    createdAt: DateWhereInput
+    "This is the object id."
+    id: IdWhereInput
+    "This is the object objectId."
+    objectId: IdWhereInput
+    "This is the object price."
+    price: NumberWhereInput
+    "This is the object store."
+    store: StoreRelationWhereInput
+    "This is the object type."
+    type: StringWhereInput
+    "This is the object updatedAt."
+    updatedAt: DateWhereInput
+}
+
+"The GeoIntersectsInput type is used to specify a geoIntersects operation on a constraint."
+input GeoIntersectsInput {
+    "This is the point to be specified."
+    point: GeoPointInput
+}
+
+"The GeoPointInput type is used in operations that involve inputting fields of type geo point."
+input GeoPointInput {
+    "This is the latitude."
+    latitude: Float!
+    "This is the longitude."
+    longitude: Float!
+}
+
+"The GeoPointWhereInput input type is used in operations that involve filtering objects by a field of type GeoPoint."
+input GeoPointWhereInput {
+    "This is the exists operator to specify a constraint to select the objects where a field exists (or do not exist)."
+    exists: Boolean
+    "This is the geoWithin operator to specify a constraint to select the objects where the values of a geo point field is within a specified polygon or sphere."
+    geoWithin: GeoWithinInput
+    "This is the maxDistance operator to specify a constraint to select the objects where the values of a geo point field is at a max distance (in radians) from the geo point specified in the $nearSphere operator."
+    maxDistance: Float
+    "This is the maxDistanceInKilometers operator to specify a constraint to select the objects where the values of a geo point field is at a max distance (in kilometers) from the geo point specified in the $nearSphere operator."
+    maxDistanceInKilometers: Float
+    "This is the maxDistanceInMiles operator to specify a constraint to select the objects where the values of a geo point field is at a max distance (in miles) from the geo point specified in the $nearSphere operator."
+    maxDistanceInMiles: Float
+    "This is the maxDistanceInRadians operator to specify a constraint to select the objects where the values of a geo point field is at a max distance (in radians) from the geo point specified in the $nearSphere operator."
+    maxDistanceInRadians: Float
+    "This is the nearSphere operator to specify a constraint to select the objects where the values of a geo point field is near to another geo point."
+    nearSphere: GeoPointInput
+    "This is the within operator to specify a constraint to select the objects where the values of a geo point field is within a specified box."
+    within: WithinInput
+}
+
+"The GeoWithinInput type is used to specify a geoWithin operation on a constraint."
+input GeoWithinInput {
+    "This is the sphere to be specified."
+    centerSphere: CenterSphereInput
+    "This is the polygon to be specified."
+    polygon: [GeoPointInput!]
+}
+
+"The IdWhereInput input type is used in operations that involve filtering objects by an id."
+input IdWhereInput {
+    "This is the equalTo operator to specify a constraint to select the objects where the value of a field equals to a specified value."
+    equalTo: ID
+    "This is the exists operator to specify a constraint to select the objects where a field exists (or do not exist)."
+    exists: Boolean
+    "This is the greaterThan operator to specify a constraint to select the objects where the value of a field is greater than a specified value."
+    greaterThan: ID
+    "This is the greaterThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is greater than or equal to a specified value."
+    greaterThanOrEqualTo: ID
+    "This is the in operator to specify a constraint to select the objects where the value of a field equals any value in the specified array."
+    in: [ID]
+    "This is the inQueryKey operator to specify a constraint to select the objects where a field equals to a key in the result of a different query."
+    inQueryKey: SelectInput
+    "This is the lessThan operator to specify a constraint to select the objects where the value of a field is less than a specified value."
+    lessThan: ID
+    "This is the lessThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is less than or equal to a specified value."
+    lessThanOrEqualTo: ID
+    "This is the notEqualTo operator to specify a constraint to select the objects where the value of a field do not equal to a specified value."
+    notEqualTo: ID
+    "This is the notIn operator to specify a constraint to select the objects where the value of a field do not equal any value in the specified array."
+    notIn: [ID]
+    "This is the notInQueryKey operator to specify a constraint to select the objects where a field do not equal to a key in the result of a different query."
+    notInQueryKey: SelectInput
+}
+
+"An entry from an object, i.e., a pair of key and value."
+input KeyValueInput {
+    "The key used to retrieve the value of this entry."
+    key: String!
+    "The value of the entry. Could be any type of scalar data."
+    value: Any!
+}
+
+input LogInInput {
+    clientMutationId: String
+    "This is the password used to log in the user."
+    password: String!
+    "This is the username used to log in the user."
+    username: String!
+}
+
+input LogOutInput {
+    clientMutationId: String
+}
+
+"The NumberWhereInput input type is used in operations that involve filtering objects by a field of type Number."
+input NumberWhereInput {
+    "This is the equalTo operator to specify a constraint to select the objects where the value of a field equals to a specified value."
+    equalTo: Float
+    "This is the exists operator to specify a constraint to select the objects where a field exists (or do not exist)."
+    exists: Boolean
+    "This is the greaterThan operator to specify a constraint to select the objects where the value of a field is greater than a specified value."
+    greaterThan: Float
+    "This is the greaterThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is greater than or equal to a specified value."
+    greaterThanOrEqualTo: Float
+    "This is the in operator to specify a constraint to select the objects where the value of a field equals any value in the specified array."
+    in: [Float]
+    "This is the inQueryKey operator to specify a constraint to select the objects where a field equals to a key in the result of a different query."
+    inQueryKey: SelectInput
+    "This is the lessThan operator to specify a constraint to select the objects where the value of a field is less than a specified value."
+    lessThan: Float
+    "This is the lessThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is less than or equal to a specified value."
+    lessThanOrEqualTo: Float
+    "This is the notEqualTo operator to specify a constraint to select the objects where the value of a field do not equal to a specified value."
+    notEqualTo: Float
+    "This is the notIn operator to specify a constraint to select the objects where the value of a field do not equal any value in the specified array."
+    notIn: [Float]
+    "This is the notInQueryKey operator to specify a constraint to select the objects where a field do not equal to a key in the result of a different query."
+    notInQueryKey: SelectInput
+}
+
+"The ObjectWhereInput input type is used in operations that involve filtering result by a field of type Object."
+input ObjectWhereInput {
+    "This is the equalTo operator to specify a constraint to select the objects where the value of a field equals to a specified value."
+    equalTo: KeyValueInput
+    "This is the exists operator to specify a constraint to select the objects where a field exists (or do not exist)."
+    exists: Boolean
+    "This is the greaterThan operator to specify a constraint to select the objects where the value of a field is greater than a specified value."
+    greaterThan: KeyValueInput
+    "This is the greaterThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is greater than or equal to a specified value."
+    greaterThanOrEqualTo: KeyValueInput
+    "This is the in operator to specify a constraint to select the objects where the value of a field equals any value in the specified array."
+    in: [KeyValueInput]
+    "This is the inQueryKey operator to specify a constraint to select the objects where a field equals to a key in the result of a different query."
+    inQueryKey: SelectInput
+    "This is the lessThan operator to specify a constraint to select the objects where the value of a field is less than a specified value."
+    lessThan: KeyValueInput
+    "This is the lessThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is less than or equal to a specified value."
+    lessThanOrEqualTo: KeyValueInput
+    "This is the notEqualTo operator to specify a constraint to select the objects where the value of a field do not equal to a specified value."
+    notEqualTo: KeyValueInput
+    "This is the notIn operator to specify a constraint to select the objects where the value of a field do not equal any value in the specified array."
+    notIn: [KeyValueInput]
+    "This is the notInQueryKey operator to specify a constraint to select the objects where a field do not equal to a key in the result of a different query."
+    notInQueryKey: SelectInput
+}
+
+"Allow to link OR add and link an object of the OrderItem class."
+input OrderItemPointerInput {
+    "Create and link an object from OrderItem class."
+    createAndLink: CreateOrderItemFieldsInput
+    "Link an existing object from OrderItem class. You can use either the global or the object id."
+    link: ID
+}
+
+"Allow to add, remove, createAndAdd objects of the OrderItem class into a relation field."
+input OrderItemRelationInput {
+    "Add existing objects from the OrderItem class into the relation. You can use either the global or the object ids."
+    add: [ID!]
+    "Create and add objects of the OrderItem class into the relation."
+    createAndAdd: [CreateOrderItemFieldsInput!]
+    "Remove existing objects from the OrderItem class out of the relation. You can use either the global or the object ids."
+    remove: [ID!]
+}
+
+"The OrderItemRelationWhereInput input type is used in operations that involve filtering objects of OrderItem class."
+input OrderItemRelationWhereInput {
+    "Check if the relation/pointer contains objects."
+    exists: Boolean
+    "Run a relational/pointer query where at least one child object can match."
+    have: OrderItemWhereInput
+    "Run an inverted relational/pointer query where at least one child object can match."
+    haveNot: OrderItemWhereInput
+}
+
+"The OrderItemWhereInput input type is used in operations that involve filtering objects of OrderItem class."
+input OrderItemWhereInput {
+    "This is the object ACL."
+    ACL: ObjectWhereInput
+    "This is the AND operator to compound constraints."
+    AND: [OrderItemWhereInput!]
+    "This is the NOR operator to compound constraints."
+    NOR: [OrderItemWhereInput!]
+    "This is the OR operator to compound constraints."
+    OR: [OrderItemWhereInput!]
+    "This is the object amount."
+    amount: NumberWhereInput
+    "This is the object createdAt."
+    createdAt: DateWhereInput
+    "This is the object id."
+    id: IdWhereInput
+    "This is the object objectId."
+    objectId: IdWhereInput
+    "This is the object product."
+    product: GallonRelationWhereInput
+    "This is the object updatedAt."
+    updatedAt: DateWhereInput
+}
+
+"Allow to link OR add and link an object of the Order class."
+input OrderPointerInput {
+    "Create and link an object from Order class."
+    createAndLink: CreateOrderFieldsInput
+    "Link an existing object from Order class. You can use either the global or the object id."
+    link: ID
+}
+
+"Allow to add, remove, createAndAdd objects of the Order class into a relation field."
+input OrderRelationInput {
+    "Add existing objects from the Order class into the relation. You can use either the global or the object ids."
+    add: [ID!]
+    "Create and add objects of the Order class into the relation."
+    createAndAdd: [CreateOrderFieldsInput!]
+    "Remove existing objects from the Order class out of the relation. You can use either the global or the object ids."
+    remove: [ID!]
+}
+
+"The OrderRelationWhereInput input type is used in operations that involve filtering objects of Order class."
+input OrderRelationWhereInput {
+    "Check if the relation/pointer contains objects."
+    exists: Boolean
+    "Run a relational/pointer query where at least one child object can match."
+    have: OrderWhereInput
+    "Run an inverted relational/pointer query where at least one child object can match."
+    haveNot: OrderWhereInput
+}
+
+"The OrderWhereInput input type is used in operations that involve filtering objects of Order class."
+input OrderWhereInput {
+    "This is the object ACL."
+    ACL: ObjectWhereInput
+    "This is the AND operator to compound constraints."
+    AND: [OrderWhereInput!]
+    "This is the NOR operator to compound constraints."
+    NOR: [OrderWhereInput!]
+    "This is the OR operator to compound constraints."
+    OR: [OrderWhereInput!]
+    "This is the object address."
+    address: AddressRelationWhereInput
+    "This is the object buyer."
+    buyer: UserRelationWhereInput
+    "This is the object createdAt."
+    createdAt: DateWhereInput
+    "This is the object id."
+    id: IdWhereInput
+    "This is the object objectId."
+    objectId: IdWhereInput
+    "This is the object orderStatus."
+    orderStatus: StringWhereInput
+    "This is the object paymentMethod."
+    paymentMethod: PaymentMethodRelationWhereInput
+    "This is the object products."
+    products: OrderItemRelationWhereInput
+    "This is the object store."
+    store: StoreRelationWhereInput
+    "This is the object updatedAt."
+    updatedAt: DateWhereInput
+}
+
+"Allow to link OR add and link an object of the PaymentMethod class."
+input PaymentMethodPointerInput {
+    "Create and link an object from PaymentMethod class."
+    createAndLink: CreatePaymentMethodFieldsInput
+    "Link an existing object from PaymentMethod class. You can use either the global or the object id."
+    link: ID
+}
+
+"Allow to add, remove, createAndAdd objects of the PaymentMethod class into a relation field."
+input PaymentMethodRelationInput {
+    "Add existing objects from the PaymentMethod class into the relation. You can use either the global or the object ids."
+    add: [ID!]
+    "Create and add objects of the PaymentMethod class into the relation."
+    createAndAdd: [CreatePaymentMethodFieldsInput!]
+    "Remove existing objects from the PaymentMethod class out of the relation. You can use either the global or the object ids."
+    remove: [ID!]
+}
+
+"The PaymentMethodRelationWhereInput input type is used in operations that involve filtering objects of PaymentMethod class."
+input PaymentMethodRelationWhereInput {
+    "Check if the relation/pointer contains objects."
+    exists: Boolean
+    "Run a relational/pointer query where at least one child object can match."
+    have: PaymentMethodWhereInput
+    "Run an inverted relational/pointer query where at least one child object can match."
+    haveNot: PaymentMethodWhereInput
+}
+
+"The PaymentMethodWhereInput input type is used in operations that involve filtering objects of PaymentMethod class."
+input PaymentMethodWhereInput {
+    "This is the object ACL."
+    ACL: ObjectWhereInput
+    "This is the AND operator to compound constraints."
+    AND: [PaymentMethodWhereInput!]
+    "This is the NOR operator to compound constraints."
+    NOR: [PaymentMethodWhereInput!]
+    "This is the OR operator to compound constraints."
+    OR: [PaymentMethodWhereInput!]
+    "This is the object createdAt."
+    createdAt: DateWhereInput
+    "This is the object id."
+    id: IdWhereInput
+    "This is the object imageUri."
+    imageUri: StringWhereInput
+    "This is the object name."
+    name: StringWhereInput
+    "This is the object objectId."
+    objectId: IdWhereInput
+    "This is the object type."
+    type: StringWhereInput
+    "This is the object updatedAt."
+    updatedAt: DateWhereInput
+}
+
+"The PointerFieldInput is used to specify a field of type pointer for an object class schema."
+input PointerFieldInput {
+    "This is the field name."
+    name: String!
+    "This is the name of the target class for the field."
+    targetClassName: String!
+}
+
+"The PolygonWhereInput input type is used in operations that involve filtering objects by a field of type Polygon."
+input PolygonWhereInput {
+    "This is the exists operator to specify a constraint to select the objects where a field exists (or do not exist)."
+    exists: Boolean
+    "This is the geoIntersects operator to specify a constraint to select the objects where the values of a polygon field intersect a specified point."
+    geoIntersects: GeoIntersectsInput
+}
+
+"Allow to manage public rights."
+input PublicACLInput {
+    "Allow anyone to read the current object."
+    read: Boolean!
+    "Allow anyone to write on the current object."
+    write: Boolean!
+}
+
+"The ReadOptionsInputt type is used in queries in order to set the read preferences."
+input ReadOptionsInput {
+    "The read preference for the queries to be executed to include fields."
+    includeReadPreference: ReadPreference
+    "The read preference for the main query to be executed."
+    readPreference: ReadPreference
+    "The read preference for the subqueries that may be required."
+    subqueryReadPreference: ReadPreference
+}
+
+"The RelationFieldInput is used to specify a field of type relation for an object class schema."
+input RelationFieldInput {
+    "This is the field name."
+    name: String!
+    "This is the name of the target class for the field."
+    targetClassName: String!
+}
+
+input ResetPasswordInput {
+    clientMutationId: String
+    email: String!
+}
+
+"Allow to manage roles in ACL."
+input RoleACLInput {
+    "Allow users who are members of the role to read the current object."
+    read: Boolean!
+    "Name of the targetted Role."
+    roleName: String!
+    "Allow users who are members of the role to write on the current object."
+    write: Boolean!
+}
+
+"Allow to link OR add and link an object of the Role class."
+input RolePointerInput {
+    "Create and link an object from Role class."
+    createAndLink: CreateRoleFieldsInput
+    "Link an existing object from Role class. You can use either the global or the object id."
+    link: ID
+}
+
+"Allow to add, remove, createAndAdd objects of the Role class into a relation field."
+input RoleRelationInput {
+    "Add existing objects from the Role class into the relation. You can use either the global or the object ids."
+    add: [ID!]
+    "Create and add objects of the Role class into the relation."
+    createAndAdd: [CreateRoleFieldsInput!]
+    "Remove existing objects from the Role class out of the relation. You can use either the global or the object ids."
+    remove: [ID!]
+}
+
+"The RoleRelationWhereInput input type is used in operations that involve filtering objects of Role class."
+input RoleRelationWhereInput {
+    "Check if the relation/pointer contains objects."
+    exists: Boolean
+    "Run a relational/pointer query where at least one child object can match."
+    have: RoleWhereInput
+    "Run an inverted relational/pointer query where at least one child object can match."
+    haveNot: RoleWhereInput
+}
+
+"The RoleWhereInput input type is used in operations that involve filtering objects of Role class."
+input RoleWhereInput {
+    "This is the object ACL."
+    ACL: ObjectWhereInput
+    "This is the AND operator to compound constraints."
+    AND: [RoleWhereInput!]
+    "This is the NOR operator to compound constraints."
+    NOR: [RoleWhereInput!]
+    "This is the OR operator to compound constraints."
+    OR: [RoleWhereInput!]
+    "This is the object createdAt."
+    createdAt: DateWhereInput
+    "This is the object id."
+    id: IdWhereInput
+    "This is the object name."
+    name: StringWhereInput
+    "This is the object objectId."
+    objectId: IdWhereInput
+    "This is the object roles."
+    roles: RoleRelationWhereInput
+    "This is the object updatedAt."
+    updatedAt: DateWhereInput
+    "This is the object users."
+    users: UserRelationWhereInput
+}
+
+"The SchemaArrayFieldInput is used to specify a field of type array for an object class schema."
+input SchemaArrayFieldInput {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaBooleanFieldInput is used to specify a field of type boolean for an object class schema."
+input SchemaBooleanFieldInput {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaBytesFieldInput is used to specify a field of type bytes for an object class schema."
+input SchemaBytesFieldInput {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaDateFieldInput is used to specify a field of type date for an object class schema."
+input SchemaDateFieldInput {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaFieldInput is used to specify a field of an object class schema."
+input SchemaFieldInput {
+    "This is the field name."
+    name: String!
+}
+
+"The CreateClassSchemaInput type is used to specify the schema for a new object class to be created."
+input SchemaFieldsInput {
+    "These are the Array fields to be added to the class schema."
+    addArrays: [SchemaArrayFieldInput!]
+    "These are the Boolean fields to be added to the class schema."
+    addBooleans: [SchemaBooleanFieldInput!]
+    "These are the Bytes fields to be added to the class schema."
+    addBytes: [SchemaBytesFieldInput!]
+    "These are the Date fields to be added to the class schema."
+    addDates: [SchemaDateFieldInput!]
+    "These are the File fields to be added to the class schema."
+    addFiles: [SchemaFileFieldInput!]
+    "This is the Geo Point field to be added to the class schema. Currently it is supported only one GeoPoint field per Class."
+    addGeoPoint: SchemaGeoPointFieldInput
+    "These are the Number fields to be added to the class schema."
+    addNumbers: [SchemaNumberFieldInput!]
+    "These are the Object fields to be added to the class schema."
+    addObjects: [SchemaObjectFieldInput!]
+    "These are the Pointer fields to be added to the class schema."
+    addPointers: [PointerFieldInput!]
+    "These are the Polygon fields to be added to the class schema."
+    addPolygons: [SchemaPolygonFieldInput!]
+    "These are the Relation fields to be added to the class schema."
+    addRelations: [RelationFieldInput!]
+    "These are the String fields to be added to the class schema."
+    addStrings: [SchemaStringFieldInput!]
+    "These are the fields to be removed from the class schema."
+    remove: [SchemaFieldInput!]
+}
+
+"The SchemaFileFieldInput is used to specify a field of type file for an object class schema."
+input SchemaFileFieldInput {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaGeoPointFieldInput is used to specify a field of type geo point for an object class schema."
+input SchemaGeoPointFieldInput {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaNumberFieldInput is used to specify a field of type number for an object class schema."
+input SchemaNumberFieldInput {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaObjectFieldInput is used to specify a field of type object for an object class schema."
+input SchemaObjectFieldInput {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaPolygonFieldInput is used to specify a field of type polygon for an object class schema."
+input SchemaPolygonFieldInput {
+    "This is the field name."
+    name: String!
+}
+
+"The SchemaStringFieldInput is used to specify a field of type string for an object class schema."
+input SchemaStringFieldInput {
+    "This is the field name."
+    name: String!
+}
+
+"The SearchInput type is used to specifiy a search operation on a full text search."
+input SearchInput {
+    "This is the flag to enable or disable case sensitive search."
+    caseSensitive: Boolean
+    "This is the flag to enable or disable diacritic sensitive search."
+    diacriticSensitive: Boolean
+    "This is the language to tetermine the list of stop words and the rules for tokenizer."
+    language: String
+    "This is the term to be searched."
+    term: String!
+}
+
+"The SelectInput type is used to specify an inQueryKey or a notInQueryKey operation on a constraint."
+input SelectInput {
+    "This is the key in the result of the subquery that must match (not match) the field."
+    key: String!
+    "This is the subquery to be executed."
+    query: SubqueryInput!
+}
+
+input SendVerificationEmailInput {
+    clientMutationId: String
+    email: String!
+}
+
+"Allow to link OR add and link an object of the Session class."
+input SessionPointerInput {
+    "Create and link an object from Session class."
+    createAndLink: CreateSessionFieldsInput
+    "Link an existing object from Session class. You can use either the global or the object id."
+    link: ID
+}
+
+"Allow to add, remove, createAndAdd objects of the Session class into a relation field."
+input SessionRelationInput {
+    "Add existing objects from the Session class into the relation. You can use either the global or the object ids."
+    add: [ID!]
+    "Create and add objects of the Session class into the relation."
+    createAndAdd: [CreateSessionFieldsInput!]
+    "Remove existing objects from the Session class out of the relation. You can use either the global or the object ids."
+    remove: [ID!]
+}
+
+"The SessionRelationWhereInput input type is used in operations that involve filtering objects of Session class."
+input SessionRelationWhereInput {
+    "Check if the relation/pointer contains objects."
+    exists: Boolean
+    "Run a relational/pointer query where at least one child object can match."
+    have: SessionWhereInput
+    "Run an inverted relational/pointer query where at least one child object can match."
+    haveNot: SessionWhereInput
+}
+
+"The SessionWhereInput input type is used in operations that involve filtering objects of Session class."
+input SessionWhereInput {
+    "This is the object ACL."
+    ACL: ObjectWhereInput
+    "This is the AND operator to compound constraints."
+    AND: [SessionWhereInput!]
+    "This is the NOR operator to compound constraints."
+    NOR: [SessionWhereInput!]
+    "This is the OR operator to compound constraints."
+    OR: [SessionWhereInput!]
+    "This is the object createdAt."
+    createdAt: DateWhereInput
+    "This is the object createdWith."
+    createdWith: ObjectWhereInput
+    "This is the object expiresAt."
+    expiresAt: DateWhereInput
+    "This is the object id."
+    id: IdWhereInput
+    "This is the object installationId."
+    installationId: StringWhereInput
+    "This is the object objectId."
+    objectId: IdWhereInput
+    "This is the object restricted."
+    restricted: BooleanWhereInput
+    "This is the object sessionToken."
+    sessionToken: StringWhereInput
+    "This is the object updatedAt."
+    updatedAt: DateWhereInput
+    "This is the object user."
+    user: UserRelationWhereInput
+}
+
+input SignUpInput {
+    clientMutationId: String
+    userFields: CreateUserFieldsInput
+}
+
+"Allow to link OR add and link an object of the Store class."
+input StorePointerInput {
+    "Create and link an object from Store class."
+    createAndLink: CreateStoreFieldsInput
+    "Link an existing object from Store class. You can use either the global or the object id."
+    link: ID
+}
+
+"Allow to add, remove, createAndAdd objects of the Store class into a relation field."
+input StoreRelationInput {
+    "Add existing objects from the Store class into the relation. You can use either the global or the object ids."
+    add: [ID!]
+    "Create and add objects of the Store class into the relation."
+    createAndAdd: [CreateStoreFieldsInput!]
+    "Remove existing objects from the Store class out of the relation. You can use either the global or the object ids."
+    remove: [ID!]
+}
+
+"The StoreRelationWhereInput input type is used in operations that involve filtering objects of Store class."
+input StoreRelationWhereInput {
+    "Check if the relation/pointer contains objects."
+    exists: Boolean
+    "Run a relational/pointer query where at least one child object can match."
+    have: StoreWhereInput
+    "Run an inverted relational/pointer query where at least one child object can match."
+    haveNot: StoreWhereInput
+}
+
+"The StoreWhereInput input type is used in operations that involve filtering objects of Store class."
+input StoreWhereInput {
+    "This is the object ACL."
+    ACL: ObjectWhereInput
+    "This is the AND operator to compound constraints."
+    AND: [StoreWhereInput!]
+    "This is the NOR operator to compound constraints."
+    NOR: [StoreWhereInput!]
+    "This is the OR operator to compound constraints."
+    OR: [StoreWhereInput!]
+    "This is the object address."
+    address: AddressRelationWhereInput
+    "This is the object createdAt."
+    createdAt: DateWhereInput
+    "This is the object id."
+    id: IdWhereInput
+    "This is the object maxDeliveryTime."
+    maxDeliveryTime: NumberWhereInput
+    "This is the object minDeliveryTime."
+    minDeliveryTime: NumberWhereInput
+    "This is the object name."
+    name: StringWhereInput
+    "This is the object objectId."
+    objectId: IdWhereInput
+    "This is the object rating."
+    rating: NumberWhereInput
+    "This is the object updatedAt."
+    updatedAt: DateWhereInput
+}
+
+"The StringWhereInput input type is used in operations that involve filtering objects by a field of type String."
+input StringWhereInput {
+    "This is the equalTo operator to specify a constraint to select the objects where the value of a field equals to a specified value."
+    equalTo: String
+    "This is the exists operator to specify a constraint to select the objects where a field exists (or do not exist)."
+    exists: Boolean
+    "This is the greaterThan operator to specify a constraint to select the objects where the value of a field is greater than a specified value."
+    greaterThan: String
+    "This is the greaterThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is greater than or equal to a specified value."
+    greaterThanOrEqualTo: String
+    "This is the in operator to specify a constraint to select the objects where the value of a field equals any value in the specified array."
+    in: [String]
+    "This is the inQueryKey operator to specify a constraint to select the objects where a field equals to a key in the result of a different query."
+    inQueryKey: SelectInput
+    "This is the lessThan operator to specify a constraint to select the objects where the value of a field is less than a specified value."
+    lessThan: String
+    "This is the lessThanOrEqualTo operator to specify a constraint to select the objects where the value of a field is less than or equal to a specified value."
+    lessThanOrEqualTo: String
+    "This is the matchesRegex operator to specify a constraint to select the objects where the value of a field matches a specified regular expression."
+    matchesRegex: String
+    "This is the notEqualTo operator to specify a constraint to select the objects where the value of a field do not equal to a specified value."
+    notEqualTo: String
+    "This is the notIn operator to specify a constraint to select the objects where the value of a field do not equal any value in the specified array."
+    notIn: [String]
+    "This is the notInQueryKey operator to specify a constraint to select the objects where a field do not equal to a key in the result of a different query."
+    notInQueryKey: SelectInput
+    "This is the options operator to specify optional flags (such as \"i\" and \"m\") to be added to a matchesRegex operation in the same set of constraints."
+    options: String
+    "This is the $text operator to specify a full text search constraint."
+    text: TextInput
+}
+
+"The SubqueryInput type is used to specify a sub query to another class."
+input SubqueryInput {
+    "This is the class name of the object."
+    className: String!
+    "These are the conditions that the objects need to match in order to be found"
+    where: Object!
+}
+
+"The TextInput type is used to specify a text operation on a constraint."
+input TextInput {
+    "This is the search to be executed."
+    search: SearchInput!
+}
+
+"The UpdateAddressFieldsInput input type is used in operations that involve creation of objects in the Address class."
+input UpdateAddressFieldsInput {
+    ACL: ACLInput
+    "This is the object city."
+    city: String
+    "This is the object complement."
+    complement: String
+    "This is the object coordinate."
+    coordinate: GeoPointInput
+    "This is the object country."
+    country: String
+    "This is the object district."
+    district: String
+    "This is the object number."
+    number: Float
+    "This is the object pointOfReference."
+    pointOfReference: String
+    "This is the object postalCode."
+    postalCode: String
+    "This is the object state."
+    state: String
+    "This is the object streetName."
+    streetName: String
+}
+
+input UpdateAddressInput {
+    clientMutationId: String
+    "These are the fields that will be used to update the object."
+    fields: UpdateAddressFieldsInput
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+input UpdateClassInput {
+    clientMutationId: String
+    "This is the name of the object class."
+    name: String!
+    "These are the schema's fields of the object class."
+    schemaFields: SchemaFieldsInput
+}
+
+"The UpdateGallonFieldsInput input type is used in operations that involve creation of objects in the Gallon class."
+input UpdateGallonFieldsInput {
+    ACL: ACLInput
+    "This is the object company."
+    company: String
+    "This is the object price."
+    price: Float
+    "This is the object store."
+    store: StorePointerInput
+    "This is the object type."
+    type: String
+}
+
+input UpdateGallonInput {
+    clientMutationId: String
+    "These are the fields that will be used to update the object."
+    fields: UpdateGallonFieldsInput
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+"The UpdateOrderFieldsInput input type is used in operations that involve creation of objects in the Order class."
+input UpdateOrderFieldsInput {
+    ACL: ACLInput
+    "This is the object address."
+    address: AddressPointerInput
+    "This is the object buyer."
+    buyer: UserPointerInput
+    "This is the object orderStatus."
+    orderStatus: String
+    "This is the object paymentMethod."
+    paymentMethod: PaymentMethodPointerInput
+    "This is the object products."
+    products: OrderItemRelationInput
+    "This is the object store."
+    store: StorePointerInput
+}
+
+input UpdateOrderInput {
+    clientMutationId: String
+    "These are the fields that will be used to update the object."
+    fields: UpdateOrderFieldsInput
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+"The UpdateOrderItemFieldsInput input type is used in operations that involve creation of objects in the OrderItem class."
+input UpdateOrderItemFieldsInput {
+    ACL: ACLInput
+    "This is the object amount."
+    amount: Float
+    "This is the object product."
+    product: GallonPointerInput
+}
+
+input UpdateOrderItemInput {
+    clientMutationId: String
+    "These are the fields that will be used to update the object."
+    fields: UpdateOrderItemFieldsInput
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+"The UpdatePaymentMethodFieldsInput input type is used in operations that involve creation of objects in the PaymentMethod class."
+input UpdatePaymentMethodFieldsInput {
+    ACL: ACLInput
+    "This is the object imageUri."
+    imageUri: String
+    "This is the object name."
+    name: String
+    "This is the object type."
+    type: String
+}
+
+input UpdatePaymentMethodInput {
+    clientMutationId: String
+    "These are the fields that will be used to update the object."
+    fields: UpdatePaymentMethodFieldsInput
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+"The UpdateRoleFieldsInput input type is used in operations that involve creation of objects in the Role class."
+input UpdateRoleFieldsInput {
+    ACL: ACLInput
+    "This is the object name."
+    name: String
+    "This is the object roles."
+    roles: RoleRelationInput
+    "This is the object users."
+    users: UserRelationInput
+}
+
+input UpdateRoleInput {
+    clientMutationId: String
+    "These are the fields that will be used to update the object."
+    fields: UpdateRoleFieldsInput
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+"The UpdateSessionFieldsInput input type is used in operations that involve creation of objects in the Session class."
+input UpdateSessionFieldsInput {
+    ACL: ACLInput
+    "This is the object createdWith."
+    createdWith: Object
+    "This is the object expiresAt."
+    expiresAt: Date
+    "This is the object installationId."
+    installationId: String
+    "This is the object restricted."
+    restricted: Boolean
+    "This is the object sessionToken."
+    sessionToken: String
+    "This is the object user."
+    user: UserPointerInput
+}
+
+input UpdateSessionInput {
+    clientMutationId: String
+    "These are the fields that will be used to update the object."
+    fields: UpdateSessionFieldsInput
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+"The UpdateStoreFieldsInput input type is used in operations that involve creation of objects in the Store class."
+input UpdateStoreFieldsInput {
+    ACL: ACLInput
+    "This is the object address."
+    address: AddressPointerInput
+    "This is the object maxDeliveryTime."
+    maxDeliveryTime: Float
+    "This is the object minDeliveryTime."
+    minDeliveryTime: Float
+    "This is the object name."
+    name: String
+    "This is the object rating."
+    rating: Float
+}
+
+input UpdateStoreInput {
+    clientMutationId: String
+    "These are the fields that will be used to update the object."
+    fields: UpdateStoreFieldsInput
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+"The UpdateUserFieldsInput input type is used in operations that involve creation of objects in the User class."
+input UpdateUserFieldsInput {
+    ACL: ACLInput
+    "This is the object authData."
+    authData: Object
+    "This is the object cpf."
+    cpf: String
+    "This is the object email."
+    email: String
+    "This is the object emailVerified."
+    emailVerified: Boolean
+    "This is the object fullName."
+    fullName: String
+    "This is the object password."
+    password: String
+    "This is the object phone."
+    phone: String
+    "This is the object username."
+    username: String
+}
+
+input UpdateUserInput {
+    clientMutationId: String
+    "These are the fields that will be used to update the object."
+    fields: UpdateUserFieldsInput
+    "This is the object id. You can use either the global or the object id."
+    id: ID!
+}
+
+"Allow to manage users in ACL."
+input UserACLInput {
+    "Allow the user to read the current object."
+    read: Boolean!
+    "ID of the targetted User."
+    userId: ID!
+    "Allow the user to write on the current object."
+    write: Boolean!
+}
+
+"Allow to link OR add and link an object of the User class."
+input UserPointerInput {
+    "Create and link an object from User class."
+    createAndLink: CreateUserFieldsInput
+    "Link an existing object from User class. You can use either the global or the object id."
+    link: ID
+}
+
+"Allow to add, remove, createAndAdd objects of the User class into a relation field."
+input UserRelationInput {
+    "Add existing objects from the User class into the relation. You can use either the global or the object ids."
+    add: [ID!]
+    "Create and add objects of the User class into the relation."
+    createAndAdd: [CreateUserFieldsInput!]
+    "Remove existing objects from the User class out of the relation. You can use either the global or the object ids."
+    remove: [ID!]
+}
+
+"The UserRelationWhereInput input type is used in operations that involve filtering objects of User class."
+input UserRelationWhereInput {
+    "Check if the relation/pointer contains objects."
+    exists: Boolean
+    "Run a relational/pointer query where at least one child object can match."
+    have: UserWhereInput
+    "Run an inverted relational/pointer query where at least one child object can match."
+    haveNot: UserWhereInput
+}
+
+"The UserWhereInput input type is used in operations that involve filtering objects of User class."
+input UserWhereInput {
+    "This is the object ACL."
+    ACL: ObjectWhereInput
+    "This is the AND operator to compound constraints."
+    AND: [UserWhereInput!]
+    "This is the NOR operator to compound constraints."
+    NOR: [UserWhereInput!]
+    "This is the OR operator to compound constraints."
+    OR: [UserWhereInput!]
+    "This is the object authData."
+    authData: ObjectWhereInput
+    "This is the object cpf."
+    cpf: StringWhereInput
+    "This is the object createdAt."
+    createdAt: DateWhereInput
+    "This is the object email."
+    email: StringWhereInput
+    "This is the object emailVerified."
+    emailVerified: BooleanWhereInput
+    "This is the object fullName."
+    fullName: StringWhereInput
+    "This is the object id."
+    id: IdWhereInput
+    "This is the object objectId."
+    objectId: IdWhereInput
+    "This is the object password."
+    password: StringWhereInput
+    "This is the object phone."
+    phone: StringWhereInput
+    "This is the object updatedAt."
+    updatedAt: DateWhereInput
+    "This is the object username."
+    username: StringWhereInput
+}
+
+"The WithinInput type is used to specify a within operation on a constraint."
+input WithinInput {
+    "This is the box to be specified."
+    box: BoxInput!
+}
+
+
+"The Date scalar type is used in operations and types that involve dates."
+scalar Date
+
+"The Object scalar type is used in operations and types that involve objects."
+scalar Object
+
+"The Any scalar type is used in operations and types that involve any type of value."
+scalar Any
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload
+
+"The Bytes scalar type is used in operations and types that involve base 64 binary data."
+scalar Bytes
+
+"The File scalar type is used in operations and types that involve files."
+scalar File

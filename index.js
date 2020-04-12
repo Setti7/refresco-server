@@ -2,6 +2,7 @@ const express = require('express');
 const { default: ParseServer, ParseGraphQLServer } = require('parse-server');
 const ParseDashboard = require('parse-dashboard');
 const dotenv = require('dotenv');
+const gql = require('graphql-tag');
 
 dotenv.config();
 
@@ -21,7 +22,16 @@ const parseGraphQLServer = new ParseGraphQLServer(
   parseServer,
   {
     graphQLPath: '/graphql',
-    playgroundPath: '/playground'
+    playgroundPath: '/playground',
+    graphQLCustomTypeDefs: gql`
+      extend type Query {
+          getBestStores(minimumRating: Int!): [Store!]! @resolve(to: "getBestStores")
+      }
+
+      extend type Mutation {
+          initOrder(objectId: ID!, message: String): Order @resolve(to: "initOrder")
+      }
+    `
   }
 );
 

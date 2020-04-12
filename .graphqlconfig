@@ -1,0 +1,15 @@
+{
+  "name": "Refresco Server GraphQL Schema",
+  "schemaPath": ".schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "http://localhost:1337/graphql",
+        "headers": {
+          "X-Parse-Application-Id": "9UBUIZ0VeTdGe6YfwEg7KBbL8LSoM8ONAMQyLKzw"
+        },
+        "introspect": true
+      }
+    }
+  }
+}
