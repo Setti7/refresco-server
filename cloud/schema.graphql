@@ -1,0 +1,7 @@
+extend type Query {
+    getBestStores(minimumRating: Int!): [Store!]! @resolve(to: "getBestStores")
+}
+
+extend type Mutation {
+    initOrder(address: AddressPointerInput!, products: [CreateOrderItemFieldsInput!]!): Order! @resolve(to: "initOrder")
+}
