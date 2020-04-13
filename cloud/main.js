@@ -9,25 +9,18 @@ Parse.Cloud.define('initOrder', async (req, res) => {
 
   console.log(req.params.products)
 
-  // Create types
-  const Order = Parse.Object.extend('Order')
-  const Address = Parse.Object.extend('Address')
-  const Store = Parse.Object.extend('Store')
-  const User = Parse.Object.extend('User')
-  const PaymentMethod = Parse.Object.extend('PaymentMethod')
-
   // Create order
-  let order = new Order()
+  let order = new Parse.Object('Order')
   let orderItemsRelation = order.relation('products')
 
   // Setting required fields
-  let user = new User()
+  let user = new Parse.Object('_User')
   user.id = 'Lkwpbo84eg' // from session
 
-  let store = new Store()
+  let store = new Parse.Object('Store')
   store.id = 'qmKKCBVqXG' // would be another param
 
-  let paymentMethod = new PaymentMethod()
+  let paymentMethod = new Parse.Object('PaymentMethod')
   paymentMethod.id = 'UOZrC98GJE' // another param
 
   order.set('orderStatus', 'draft')
@@ -38,7 +31,7 @@ Parse.Cloud.define('initOrder', async (req, res) => {
   /// Get Address from input
   let address
   if ('link' in req.params.address) {
-    address = new Address()
+    address = new Parse.Object('Address')
     address.id = req.params.address.link
   } else if ('createAndLink' in req.params.address) {
     // Create and link to order
@@ -51,19 +44,15 @@ Parse.Cloud.define('initOrder', async (req, res) => {
 
   // Create orderItems
   req.params.products.forEach(async (product) => {
-    const OrderItem = Parse.Object.extend('OrderItem')
-    const Product = Parse.Object.extend('Gallon')
-
-    let newOrderItem = new OrderItem()
-    let newProduct = new Product()
+    let newOrderItem = new Parse.Object('OrderItem')
+    let newProduct = new Parse.Object('Gallon')
 
     newProduct.id = product.product.link
 
     newOrderItem.set('amount', 10)
     newOrderItem.set('product', newProduct)
-    console.log(newOrderItem.toJSON())
+
     let savedOrderitem = await newOrderItem.save()
-    console.log(savedOrderitem.toJSON())
 
     // For some reason the orderItems aren't being added to the relation.
     orderItemsRelation.add(savedOrderitem)
