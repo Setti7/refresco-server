@@ -1,75 +1,69 @@
-Parse.Cloud.define('hello', function (req, res) {
+Parse.Cloud.define('hello', async req => {
   return 'Hi'
 })
 
-Parse.Cloud.define('initOrder', async (req, res) => {
-  /// Inputs
-  ///   - address: AddressPointerInput!
-  ///   - products: [CreateOrderItemFieldsInput!]!
-
-  console.log(req.params.products)
-
-  // Create order
-  let order = new Parse.Object('Order')
-  let orderItemsRelation = order.relation('products')
-
-  // Setting required fields
-  let user = new Parse.Object('_User')
-  user.id = 'Lkwpbo84eg' // from session
-
-  let store = new Parse.Object('Store')
-  store.id = 'qmKKCBVqXG' // would be another param
-
-  let paymentMethod = new Parse.Object('PaymentMethod')
-  paymentMethod.id = 'UOZrC98GJE' // another param
-
-  order.set('orderStatus', 'draft')
-  order.set('buyer', user)
-  order.set('store', store)
-  order.set('paymentMethod', paymentMethod)
-
-  /// Get Address from input
-  let address
-  if ('link' in req.params.address) {
-    address = new Parse.Object('Address')
-    address.id = req.params.address.link
-  } else if ('createAndLink' in req.params.address) {
-    // Create and link to order
-
-    // Do I need to manually set all those address fields? What is the best way
-    // to create an object directly from params when using graphql?
+Parse.Cloud.define('initOrder', async req => {
+  let user = req.user
+  if (!user) {
+    throw new Error('Unauthorized')
   }
 
-  order.set('address', address)
+  // Create Order object
+  let order = new Parse.Object('Order')
+  let orderItemsRelation = order.relation('orderItems')
 
-  // Create orderItems
-  req.params.products.forEach(async (product) => {
-    let newOrderItem = new Parse.Object('OrderItem')
-    let newProduct = new Parse.Object('Gallon')
+  // Get store
+  let storeQuery = new Parse.Query('Store')
+  let store = await storeQuery.get(req.params.store)
 
-    newProduct.id = product.product.link
-
-    newOrderItem.set('amount', 10)
-    newOrderItem.set('product', newProduct)
-
-    let savedOrderitem = await newOrderItem.save()
-
-    // For some reason the orderItems aren't being added to the relation.
-    orderItemsRelation.add(savedOrderitem)
+  // Create address
+  let addressJson = req.params.address
+  let address = new Parse.Object('Address', {
+    'streetName': addressJson.streetName,
+    'number': addressJson.number,
+    'city': addressJson.city,
+    'state': addressJson.state,
+    'district': addressJson.district,
+    'country': addressJson.country,
+    'pointOfReference': addressJson.pointOfReference,
+    'complement': addressJson.complement,
+    'coordinate': new Parse.GeoPoint(addressJson.coordinate.latitude,
+      addressJson.coordinate.longitude),
+    'postalCode': addressJson.postalCode,
   })
+  address = await address.save()
 
-  const saved = await order.save()
-  console.log(saved.toJSON())
+  // Create order items
+  let orderItemsJson = req.params.orderItems
 
-  /// When creating an object of a generated class with graphql, the return type
-  // is actually CreateOrderPayload. How can I return such thing?
-  return saved
-})
+  for (const json of orderItemsJson) {
+    if ('createAndLink' in json.product) {
+      throw new Error('createAndLink not available. Use link instead.')
+    }
 
-Parse.Cloud.define('getBestStores', async req => {
-  const storesQuery = new Parse.Query('Store').include('address')
-  storesQuery.greaterThan('rating', req.params.minimumRating)
-  // throw Error('Something failed...');
+    // TODO: check if gallon is from the same store
+    let orderItem = new Parse.Object('OrderItem')
+    let linkedGallon = new Parse.Object('Gallon')
+    linkedGallon.id = json.product.link
 
-  return await storesQuery.find()
+    orderItem.set('amount', json.amount)
+    orderItem.set('product', linkedGallon)
+    let savedOrderItem = await orderItem.save()
+
+    orderItemsRelation.add(savedOrderItem)
+  }
+
+  // Get payment method
+  let paymentMethodQuery = new Parse.Query('PaymentMethod')
+  let paymentMethod = await paymentMethodQuery.get(req.params.paymentMethod)
+
+  // Set fields
+  order.set('address', address)
+  order.set('store', store)
+  order.set('paymentMethod', paymentMethod)
+  order.set('orderStatus', 'pending')
+  order.set('change', req.params.change)
+  order.set('buyer', user)
+
+  return await order.save()
 })

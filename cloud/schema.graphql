@@ -1,7 +1,15 @@
-extend type Query {
-    getBestStores(minimumRating: Int!): [Store!]! @resolve(to: "getBestStores")
-}
-
 extend type Mutation {
-    initOrder(address: AddressPointerInput!, products: [CreateOrderItemFieldsInput!]!): Order! @resolve(to: "initOrder")
+    "Initialize an Order for the current User"
+    initOrder(
+        "Store ID"
+        store: ID!,
+        "Delivery address"
+        address: CreateAddressFieldsInput!,
+        "A list of OrderItems being purchased"
+        orderItems: [CreateOrderItemFieldsInput!]!,
+        "The payment method ID"
+        paymentMethod: ID!,
+        "Change amount, in integers"
+        change: Int!
+    ): Order! @resolve(to: "initOrder")
 }
