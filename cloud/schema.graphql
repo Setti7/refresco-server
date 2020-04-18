@@ -1,15 +1,29 @@
 extend type Mutation {
     "Initialize an Order for the current User"
     initOrder(
-        "Store ID"
-        store: ID!,
-        "Delivery address"
-        address: CreateAddressFieldsInput!,
-        "A list of OrderItems being purchased"
-        orderItems: [CreateOrderItemFieldsInput!]!,
-        "The payment method ID"
-        paymentMethod: ID!,
-        "Change amount, in integers"
-        change: Int!
-    ): Order! @resolve(to: "initOrder")
+        input: InitOrderInput!
+    ): InitOrderPayload @resolve(to: "initOrder")
+}
+
+input InitOrderInput {
+    fields: InitOrderFieldsInput
+    clientMutationId: String
+}
+
+input InitOrderFieldsInput {
+    "Store ID"
+    store: ID!,
+    "Delivery address"
+    address: CreateAddressFieldsInput!,
+    "A list of OrderItems being purchased"
+    orderItems: [CreateOrderItemFieldsInput!]!, #TODO: Change to InitOrderItemFieldsInput, which will not have a crate and link option
+    "The payment method ID"
+    paymentMethod: ID!,
+    "Change amount, in integers"
+    change: Int!
+}
+
+type InitOrderPayload {
+    order: Order!
+    clientMutationId: String
 }

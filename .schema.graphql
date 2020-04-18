@@ -293,6 +293,11 @@ type GeoPoint {
     longitude: Float!
 }
 
+type InitOrderPayload {
+    clientMutationId: String
+    order: Order!
+}
+
 type LogInPayload {
     clientMutationId: String
     "This is the existing user that was logged in and returned as a viewer."
@@ -305,7 +310,6 @@ type LogOutPayload {
     viewer: Viewer!
 }
 
-"Mutation is the top level type for mutations."
 type Mutation {
     "The callCloudCode mutation can be used to invoke a cloud code function."
     callCloudCode(input: CallCloudCodeInput!): CallCloudCodePayload
@@ -351,6 +355,8 @@ type Mutation {
     deleteStore(input: DeleteStoreInput!): DeleteStorePayload
     "The deleteUser mutation can be used to delete an object of the User class."
     deleteUser(input: DeleteUserInput!): DeleteUserPayload
+    "Initialize an Order for the current User"
+    initOrder(input: InitOrderInput!): InitOrderPayload
     "The logIn mutation can be used to log in an existing user."
     logIn(input: LogInInput!): LogInPayload
     "The logOut mutation can be used to log out an existing user."
@@ -390,18 +396,16 @@ type Order implements Node & ParseObject {
     address: Address!
     "This is the object buyer."
     buyer: User!
+    "This is the object change."
+    change: Float
     "This is the date in which the object was created."
     createdAt: Date!
     "The ID of an object"
     id: ID!
     "This is the object id."
     objectId: ID!
-    "This is the object orderStatus."
-    orderStatus: String!
-    "This is the object paymentMethod."
-    paymentMethod: PaymentMethod!
-    "This is the object products."
-    products(
+    "This is the object orderItem."
+    orderItem(
         after: String,
         before: String,
         first: Int,
@@ -415,6 +419,25 @@ type Order implements Node & ParseObject {
         "These are the conditions that the objects need to match in order to be found."
         where: OrderItemWhereInput
     ): OrderItemConnection!
+    "This is the object orderItems."
+    orderItems(
+        after: String,
+        before: String,
+        first: Int,
+        last: Int,
+        "The read options for the query to be executed."
+        options: ReadOptionsInput,
+        "The fields to be used when sorting the data fetched."
+        order: [OrderItemOrder!],
+        "This is the number of objects that must be skipped to return."
+        skip: Int,
+        "These are the conditions that the objects need to match in order to be found."
+        where: OrderItemWhereInput
+    ): OrderItemConnection!
+    "This is the object orderStatus."
+    orderStatus: String!
+    "This is the object paymentMethod."
+    paymentMethod: PaymentMethod!
     "This is the object store."
     store: Store!
     "This is the date in which the object was las updated."
@@ -531,7 +554,6 @@ type PublicACL {
     write: Boolean
 }
 
-"Query is the top level type for queries."
 type Query {
     "The address query can be used to get an object of the Address class by its id."
     address(
@@ -1165,9 +1187,8 @@ enum AddressOrder {
 
 "The CloudCodeFunction enum type contains a list of all available cloud code functions."
 enum CloudCodeFunction {
-    getBestStores
-    getStoreGallons
     hello
+    initOrder
 }
 
 "The GallonOrder input type is used when sorting objects of the Gallon class."
@@ -1218,18 +1239,22 @@ enum OrderOrder {
     address_DESC
     buyer_ASC
     buyer_DESC
+    change_ASC
+    change_DESC
     createdAt_ASC
     createdAt_DESC
     id_ASC
     id_DESC
     objectId_ASC
     objectId_DESC
+    orderItem_ASC
+    orderItem_DESC
+    orderItems_ASC
+    orderItems_DESC
     orderStatus_ASC
     orderStatus_DESC
     paymentMethod_ASC
     paymentMethod_DESC
-    products_ASC
-    products_DESC
     store_ASC
     store_DESC
     updatedAt_ASC
@@ -1608,12 +1633,16 @@ input CreateOrderFieldsInput {
     address: AddressPointerInput!
     "This is the object buyer."
     buyer: UserPointerInput!
+    "This is the object change."
+    change: Float
+    "This is the object orderItem."
+    orderItem: OrderItemRelationInput
+    "This is the object orderItems."
+    orderItems: OrderItemRelationInput
     "This is the object orderStatus."
     orderStatus: String!
     "This is the object paymentMethod."
     paymentMethod: PaymentMethodPointerInput!
-    "This is the object products."
-    products: OrderItemRelationInput
     "This is the object store."
     store: StorePointerInput!
 }
@@ -1984,6 +2013,24 @@ input IdWhereInput {
     notInQueryKey: SelectInput
 }
 
+input InitOrderFieldsInput {
+    "Delivery address"
+    address: CreateAddressFieldsInput!
+    "Change amount, in integers"
+    change: Int!
+    "A list of OrderItems being purchased"
+    orderItems: [CreateOrderItemFieldsInput!]!
+    "The payment method ID"
+    paymentMethod: ID!
+    "Store ID"
+    store: ID!
+}
+
+input InitOrderInput {
+    clientMutationId: String
+    fields: InitOrderFieldsInput
+}
+
 "An entry from an object, i.e., a pair of key and value."
 input KeyValueInput {
     "The key used to retrieve the value of this entry."
@@ -2150,18 +2197,22 @@ input OrderWhereInput {
     address: AddressRelationWhereInput
     "This is the object buyer."
     buyer: UserRelationWhereInput
+    "This is the object change."
+    change: NumberWhereInput
     "This is the object createdAt."
     createdAt: DateWhereInput
     "This is the object id."
     id: IdWhereInput
     "This is the object objectId."
     objectId: IdWhereInput
+    "This is the object orderItem."
+    orderItem: OrderItemRelationWhereInput
+    "This is the object orderItems."
+    orderItems: OrderItemRelationWhereInput
     "This is the object orderStatus."
     orderStatus: StringWhereInput
     "This is the object paymentMethod."
     paymentMethod: PaymentMethodRelationWhereInput
-    "This is the object products."
-    products: OrderItemRelationWhereInput
     "This is the object store."
     store: StoreRelationWhereInput
     "This is the object updatedAt."
@@ -2692,12 +2743,16 @@ input UpdateOrderFieldsInput {
     address: AddressPointerInput
     "This is the object buyer."
     buyer: UserPointerInput
+    "This is the object change."
+    change: Float
+    "This is the object orderItem."
+    orderItem: OrderItemRelationInput
+    "This is the object orderItems."
+    orderItems: OrderItemRelationInput
     "This is the object orderStatus."
     orderStatus: String
     "This is the object paymentMethod."
     paymentMethod: PaymentMethodPointerInput
-    "This is the object products."
-    products: OrderItemRelationInput
     "This is the object store."
     store: StorePointerInput
 }

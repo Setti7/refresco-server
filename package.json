@@ -7,14 +7,16 @@
     "type": "git",
     "url": "https://github.com/ParsePlatform/parse-server-example"
   },
+  "private": true,
   "license": "MIT",
   "dependencies": {
+    "@types/parse": "^2.10.18",
     "dotenv": "^8.2.0",
     "express": "~4.11.x",
+    "graphql-tag": "^2.10.3",
     "kerberos": "~0.0.x",
     "parse-dashboard": "^2.0.1",
-    "parse-server": "^3.8.0",
-    "graphql-tag": "^2.10.3"
+    "parse-server": "^3.8.0"
   },
   "scripts": {
     "start": "node index.js"
