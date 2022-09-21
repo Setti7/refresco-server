@@ -16,7 +16,7 @@
     "graphql-tag": "^2.10.3",
     "kerberos": "~0.0.x",
     "parse-dashboard": "^2.0.1",
-    "parse-server": "^3.8.0"
+    "parse-server": "^4.10.15"
   },
   "scripts": {
     "start": "node index.js"
